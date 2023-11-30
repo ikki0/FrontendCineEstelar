@@ -1,0 +1,45 @@
+body{
+    color: white;
+}
+section{
+    display: flex;
+    flex-direction: column;
+    row-gap: 6em;
+}
+.article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 20px;
+    
+    
+
+}
+.article header{
+    text-align: center;
+}
+.article h1{
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+.article h2{
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+.article p{
+    font-size: 19px;
+    align-self: center;
+    width: 75%;
+}
+.img1{
+    width: 30%;
+    height: 30vh;
+    align-self: center;
+    object-fit: contain;
+}
+.img2{
+    width: 30%;
+    height: 15vh;
+    align-self: center;
+    object-fit: contain;
+}
