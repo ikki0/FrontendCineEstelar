@@ -8,8 +8,22 @@ function Header(): React.JSX.Element{
             <nav>
                 <ul>
                     <li>
+                        <picture className="picture-logo">
                         <Link to="/">
-                         logo de empresa
+                            <img className="logoCine" src='/src/assets/images/logoEmpresaPNG.png' alt="logo_cine_estelar" />
+                        </Link>
+
+                        <Link to="/">
+                            <p className="name-logo">Cine Estelar</p>
+                        </Link>
+                      
+                        </picture>
+                        
+                    </li>
+
+                    <li>
+                        <Link to="./cines">
+                            Cines
                         </Link>
                     </li>
 
