@@ -1,17 +1,20 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css'
-import { Header } from './components/Header/Header'
-import { Button } from './components/Button/Button';
-import React from 'react';
+
+import { RouteComponent } from './routes/RouteComponent';
 
 function App() {
-  const [currentNumber, setCurrentNumber] = React.useState(0);
+  // const [currentNumber, setCurrentNumber] = React.useState(0);
 
   return (
-    <>
-      <Header />
-      <h1>prueba</h1>
+     /* Ejemplo: <h1>prueba</h1>
       <Button onClick={() => setCurrentNumber(currentNumber + 1) } />
-      <p>Numero de veces presionado: {currentNumber}</p>
+      <p>Numero de veces presionado: {currentNumber}</p> */
+   
+    <>
+      <BrowserRouter>
+        <RouteComponent/>
+      </BrowserRouter>
     </>
   );
 }

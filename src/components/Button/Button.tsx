@@ -1,12 +1,15 @@
+import "./Button.css"
+
 interface ButtonProps {
-    onClick: () => void;
+    // onClick: () => void;
+    label: string;
 }
 
 // Es recomendable crear una interfaz para cada componente indicando los tipos de las props
-function Button({ onClick }: ButtonProps) : React.JSX.Element {
+function Button({ label }: ButtonProps) : React.JSX.Element {
     return (
-        <button onClick={ onClick }>
-            Click me!
+        <button className="button">
+            {label}
         </button>
     )
 }
