@@ -9,7 +9,10 @@ interface ButtonProps {
 function Button({ label }: ButtonProps) : React.JSX.Element {
     return (
         <button className="button">
-            {label}
+            <span>{ label} </span>
+            <svg>
+		        <rect x="0" y ="0" fill="none"></rect>
+			</svg>
         </button>
     )
 }
