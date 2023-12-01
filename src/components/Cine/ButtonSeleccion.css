@@ -1,0 +1,48 @@
+.button{
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .button span {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .button svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: none;
+  }
+  
+  .button rect {
+    width: 100%;
+      height: 100%;
+      /* Esto remarca la parte exterior de un objeto (trazado)*/
+      stroke: #ffc22c;
+      /* ancho del trazado */
+      stroke-width: 5px;
+      /* el trazado es en forma segmental */
+      stroke-dasharray: 1000;
+      /* el trazado cambia su valor original y se posiciona diferente */
+      stroke-dashoffset: 1000;
+      transition: stroke-dashoffset 0.3s ease-in-out;
+  }
+  
+  .button:active rect,
+  .button:focus rect {
+    stroke-dashoffset: 100;
+  }
+  .button:active,
+  .button:focus {
+  background-color: #ffc32c56;
+  }
