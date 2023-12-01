@@ -1,0 +1,49 @@
+.reserva{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.reserva ul{
+    margin-top: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 20px;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+}
+.reserva li{
+    display: flex;
+    list-style: none;
+    column-gap: 10px;
+}
+.reserva div {
+    margin-top: 30px;
+    width: 100vh;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.pantalla{
+    clip-path: polygon(0 0, 100% 0%, 97% 85%, 3% 85%);
+    background-color: grey;
+    margin-bottom: 10em;
+}
+.butaca{
+    display: flex;
+    flex-direction: column;
+
+}
+.row1,.row2,.row3,.row4,.row5{
+    flex-direction: row;
+    gap: 15px;
+}
+
+.butaca button{
+    width: 8em;
+    height: 5em;
+    background-color: lightslategray;
+    
+}

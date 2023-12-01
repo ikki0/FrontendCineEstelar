@@ -5,6 +5,7 @@ import { AppFormSingUp } from "../components/form/AppFormSingUp";
 import { AppFormLogin } from "../components/form/AppFormLogin ";
 import { Peliculas } from "../views/Peliculas/peliculas";
 import { Colaboradores } from "../views/Colaboraciones/Colaboraciones";
+import { Reservas } from "../views/Reservas/Reservas";
 
 
 
@@ -17,6 +18,7 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/inicio" element={ <AppFormLogin /> } />
             <Route path="/peliculas" element={ <Peliculas /> } />
             <Route path="/colaboraciones" element={ <Colaboradores /> } />
+            <Route path="/reservas" element={ <Reservas /> } />
             
         </Routes>
     );

@@ -34,7 +34,7 @@ function Colaboracion() {
           atención médica y recursos esenciales para construir un futuro mejor
           para estos jóvenes valientes.
         </p>
-        <img className="img1" src="src/assets/images/colaboraciones/pobreza.png" alt="" />
+        <img className="img1" src="src/assets/images/colaboraciones/pobreza.png" alt="logo ong pobreza" />
       </article>
       <article className="article article-3">
         <header>
@@ -60,7 +60,7 @@ function Colaboracion() {
           un impacto duradero más allá de la magia del cine. ¡Gracias por ser
           parte de esta campaña de colaboración que marca la diferencia!
         </p>
-        <img className="img2" src="src/assets/images/colaboraciones/reforestalogo.png" alt="" />
+        <img className="img2" src="src/assets/images/colaboraciones/reforestalogo.png" alt="logo ong forestal" />
       </article>
     </section>
   );

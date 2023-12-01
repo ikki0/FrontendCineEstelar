@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import './singUpForm.css'; // Ajusta la ruta según tu estructura de archivos
+import './singUpForm.css';
 
 interface FormData {
   email: string;
