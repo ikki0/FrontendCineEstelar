@@ -1,0 +1,17 @@
+.footer {
+    width: 100%;
+    padding: 5vh;
+    background-color: #0a1c3a;
+    margin-top: 0px;
+  }
+  
+  .footerElements {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .footerElements a{
+    color: rgb(124, 122, 122);
+  }
+  
+  
