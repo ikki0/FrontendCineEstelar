@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Nova+Square&family=Roboto:wght@400;500;700&display=swap');
 
 .container-movie{
@@ -43,4 +44,8 @@
     left: 21%;
     transform: translate(0%,-50%);
 
+=======
+.main{
+    min-height: 80vh;
+>>>>>>> 9b0392f6db8d617b9ba440bfba6be289d1a5a4ce
 }

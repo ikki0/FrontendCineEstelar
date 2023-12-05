@@ -1,0 +1,45 @@
+.button-seleccion {
+  /* Los estilos a continuación son específicos para esta clase */
+  padding: 8px 12px; /* Cambié el padding para diferenciar visualmente */
+  font-size: 0.9rem; /* Tamaño de fuente ligeramente más pequeño */
+  font-weight: 600; /* Modifiqué el peso de la fuente */
+  background-color: #071429; /* Color de fondo diferente */
+  color: white; /* Color del texto diferente */
+  border-radius: 8px; /* Bordes más redondeados */
+  position: relative;
+  overflow: hidden;
+}
+
+.button-seleccion span {
+  position: relative;
+  z-index: 2;
+}
+
+.button-seleccion svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: none;
+}
+
+.button-seleccion rect {
+  width: 100%;
+  height: 100%;
+  stroke: #ffc22c;
+  stroke-width: 5px;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 0.3s ease-in-out;
+}
+
+.button-seleccion:active rect,
+.button-seleccion:focus rect {
+  stroke-dashoffset: 100;
+}
+
+.button-seleccion:active,
+.button-seleccion:focus {
+  background-color: #ffc32c56;
+}

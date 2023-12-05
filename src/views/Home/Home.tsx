@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Footer } from "../../components/Footer/Footer"
 import { Header } from "../../components/Header/Header";
 import { MovieInterface } from "../../interfaces/MovieInterface";
 import { ImageDetailInterface } from "../../interfaces/ImageDetailInterface";
@@ -6,6 +7,7 @@ import { MovieClass } from "../../classes/MovieClass";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "./Home.css";
+import './Home.css'
 
 function Home(): React.JSX.Element {
   const [movies, setMovies] = useState<MovieClass[] | null>(null);
@@ -57,9 +59,9 @@ function Home(): React.JSX.Element {
 
   return (
     <>
-      <Header />
-      <div>
-        <div className="container-movie">
+        <Header  />
+        <div className="main">
+          <div className="container-movie">
           <ImageGallery
             className="image-gallery"
             items={imageDetails}
@@ -82,9 +84,9 @@ function Home(): React.JSX.Element {
             <p>Cargando...</p>
           )}
         </div>
-      </div>
+        </div>
+      <Footer />
     </>
   );
 }
-
 export { Home };

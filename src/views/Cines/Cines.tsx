@@ -1,9 +1,14 @@
+import React from 'react';
+import './Cines.css'
+import Filtro from '../../components/Cine/Filtro.tsx'
+import { SeleccionCine } from '../../components/Cine/SeleccionCine.tsx';
+
 function Cines(): React.JSX.Element {
     return (
         <>
-        <h1>pagina de cines</h1>
+            <Filtro/>
+            <SeleccionCine/>
         </>
-    ); 
+    );
 }
-
 export { Cines };

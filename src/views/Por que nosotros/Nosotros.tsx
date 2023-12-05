@@ -1,18 +1,18 @@
 import  React from 'react';
-import './Colaboraciones.css'
-import { Colaboracion } from '../../components/Colaborador/Colaboracion';
+import './Nosotros.css'
+import { NosotrosComponent } from '../../components/Footer/NosotrosComponent';
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 
-function Colaboradores(): React.JSX.Element{
+function Nosotros(): React.JSX.Element{
     return(
         <>
         <Header/>
         <div className='main'>
-            <Colaboracion />
+            <NosotrosComponent />
             </div>
             <Footer/>
         </>
     );
 }
-export {Colaboradores}; 
+export {Nosotros}; 
