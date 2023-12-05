@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&family=Roboto:wght@400;500;700&display=swap');
+
+.container-movie{
+    position: relative;
+    /* background-color: yellow; */
+}
+.image-gallery{
+    width: 27%;
+    position: relative;
+    left: 50%;
+    transform: translate(-35%,0%);
+}
+
+.image-gallery-slide img {
+
+    width: 400px;
+    height: 600px;
+    max-height: 600px;
+    max-width: 400px;
+    object-fit: cover;
+    overflow: hidden;
+    object-position: center center;
+}
+
+
+.image-gallery-left-nav .image-gallery-svg,
+.image-gallery-right-nav .image-gallery-svg {
+  width: 55px; /* Ajusta este valor a tu gusto */
+  height: 55px; /* Ajusta este valor a tu gusto */
+}
+
+
+
+.movie-title{
+    font-size: 3.3rem;
+    font-family: 'Nova Square', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.03rem;
+    /* background-color: red; */
+    width: 22rem;
+    position: absolute;
+    top: 50%;
+    left: 21%;
+    transform: translate(0%,-50%);
+
+}
