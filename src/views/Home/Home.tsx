@@ -1,10 +1,15 @@
+import { Footer } from "../../components/Footer/Footer"
+import { Header } from "../../components/Header/Header"
+import './Home.css'
 
-function Home (): React.JSX.Element {
+function Home(): React.JSX.Element {
   return (
     <>
-    <div>
-      <h1>PAGINA Home</h1>
-    </div>
+      <Header />
+      <div className="main">
+        <h1>PAGINA Home</h1>
+      </div>
+      <Footer />
     </>
   )
 }

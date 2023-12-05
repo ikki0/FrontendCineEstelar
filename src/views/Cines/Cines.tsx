@@ -1,4 +1,5 @@
 import React from 'react';
+import './Cines.css'
 import Filtro from '../../components/Cine/Filtro.tsx'
 import { SeleccionCine } from '../../components/Cine/SeleccionCine.tsx';
 
