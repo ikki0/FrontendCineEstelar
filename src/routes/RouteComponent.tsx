@@ -7,6 +7,7 @@ import { Peliculas } from "../views/Peliculas/peliculas";
 import { Colaboradores } from "../views/Colaboraciones/Colaboraciones";
 import { Nosotros } from "../views/Por que nosotros/Nosotros";
 import { Reservas } from "../views/Reservas/Reservas";
+import { Contacto } from "../views/Contacto/Contacto";
 
 function RouteComponent(): React.JSX.Element{
     return (
@@ -17,9 +18,8 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/inicio" element={ <AppFormLogin /> } />
             <Route path="/peliculas" element={ <Peliculas /> } />
             <Route path="/colaboraciones" element={ <Colaboradores /> } />
-            <Route path="/contacto" element={ <Nosotros /> } />
+            <Route path="/contacto" element={ <Contacto/> } />
             <Route path="/porquenosotros" element={ <Nosotros /> } />
-            <Route path="/quienessomos" element={ <Colaboradores /> } />
             <Route path="/reservas" element={ <Reservas /> } />
             
         </Routes>

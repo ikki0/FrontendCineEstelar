@@ -63,7 +63,7 @@ function Home(): React.JSX.Element {
         <div className="main">
           <div className="container-movie">
           <ImageGallery
-            className="image-gallery"
+       
             items={imageDetails}
             showPlayButton={false}
             showFullscreenButton={false}

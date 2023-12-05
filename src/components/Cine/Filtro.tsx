@@ -9,6 +9,19 @@ import ListItem from '@mui/material/ListItem';
 
 type Anchor = 'left';
 
+interface Genero {
+  id: number;
+  nombre: string;
+}
+  
+const response: Genero[] =[
+  { "id": 1, "nombre": "Acción" },
+  { "id": 2, "nombre": "Comedia" },
+  { "id": 3, "nombre": "Drama" },
+  { "id": 4, "nombre": "Ciencia ficción" },
+  { "id": 5, "nombre": "Aventura" }
+]
+
 export default function Filtro() {
   const [state, setState] = React.useState<{ [key in Anchor]: boolean }>({
     left: false,
@@ -46,15 +59,15 @@ export default function Filtro() {
         </ListItemButton>
         <Collapse in={openGender} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="Terror" />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="Acción" />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="Aventura" />
-            </ListItem>
+            {/* Esta es la sección actualizada con la lista de géneros */}
+            <div className='genres'> {/* Comentario: Aquí se sitúa la lista de géneros */}
+              {response.map(generos => (
+                <ListItem key={generos.id} sx={{ pl: 4 }}>
+                  <ListItemText primary={generos.nombre} />
+                </ListItem>
+              ))}
+            </div>
+            {/* Fin de la sección actualizada */}
           </List>
         </Collapse>
       </List>
@@ -65,7 +78,7 @@ export default function Filtro() {
     <React.Fragment>
       {(['left'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-            <img
+          <img
             src="src/assets/images/Cines/flechaN.png"
             alt="Filtros"
             onClick={toggleDrawer(anchor, true)}

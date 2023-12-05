@@ -1,5 +1,5 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import './singUpForm.css'; // Ajusta la ruta según tu estructura de archivos
+import { useForm, SubmitHandler } from "react-hook-form";
+import "./singUpForm.css"; // Ajusta la ruta según tu estructura de archivos
 
 interface FormData {
   nick: string;
@@ -17,35 +17,53 @@ function AppFormSingUp() {
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = (values) => {
-    alert('Form submit: ' + JSON.stringify(values));
+    alert("Form submit: " + JSON.stringify(values));
   };
 
   return (
     <div className="form-register">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input className='controls' {...register('nick', { required: true })} placeholder="nickname" />
+        <input
+          className="controls"
+          {...register("nick", { required: true })}
+          placeholder="Nickname"
+        />
         {errors.nick && <span>Los campos son obligatorios</span>}
 
-        <input className='controls'{...register('email', { required: true })} placeholder="email" />
+        <input
+          className="controls"
+          {...register("email", { required: true })}
+          placeholder="Email"
+        />
         {errors.email && <span>Los campos son obligatorios</span>}
 
-        <input className='controls'{...register('contraseña', { required: true })} placeholder="contraseña" type="password" />
-        {errors.contraseña && <span>Los campos son obligatorios</span>}
-
-        <input className='controls'
-          {...register('verificarContraseña', {
-            required: true,
-            validate: (value) => value === getValues('contraseña'),
-          })}
-          placeholder="verificar contraseña"
+        <input
+          className="controls"
+          {...register("contraseña", { required: true })}
+          placeholder="Contraseña"
           type="password"
         />
-        {errors.verificarContraseña && <span>las contraseñas no coinciden</span>}
+        {errors.contraseña && <span>Los campos son obligatorios</span>}
 
-        <button className='botons' type="submit">Submit</button>
+        <input
+          className="controls"
+          {...register("verificarContraseña", {
+            required: true,
+            validate: (value) => value === getValues("contraseña"),
+          })}
+          placeholder="Verificar contraseña"
+          type="password"
+        />
+        {errors.verificarContraseña && (
+          <span>Las contraseñas no coinciden</span>
+        )}
+
+        <button className="botons" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
 }
 
-export { AppFormSingUp};
+export { AppFormSingUp };
