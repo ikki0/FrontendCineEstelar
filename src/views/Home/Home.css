@@ -4,22 +4,20 @@
     position: relative;
     /* background-color: yellow; */
 }
-.image-gallery{
+.image-gallery .image-gallery{
     width: 27%;
     position: relative;
     left: 50%;
     transform: translate(-35%,0%);
 }
 
-.image-gallery-slide img {
 
-    width: 400px;
+.image-gallery-slide img {
+    object-position: center center; 
     height: 600px;
-    max-height: 600px;
-    max-width: 400px;
     object-fit: cover;
-    overflow: hidden;
-    object-position: center center;
+    /* background-color: red; */
+
 }
 
 
@@ -38,10 +36,17 @@
     letter-spacing: 0.03rem;
     /* background-color: red; */
     width: 22rem;
+}
+
+.container-movie-info{
     position: absolute;
     top: 50%;
     left: 21%;
     transform: translate(0%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 20px;
 }
 
 .main{

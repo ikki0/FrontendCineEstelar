@@ -9,6 +9,7 @@
     font-size: 3rem !important;
     font-weight: bold;
     font-size: 4rem;
+    /* background-color: red; */
 }
 
 .header nav {
@@ -47,4 +48,15 @@
 
 .title-header {
     font-size: 1.3rem;
+}
+
+.container-buttons li{
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+}
+
+.logo-user {
+    width: 22px;
+    height: auto;
 }

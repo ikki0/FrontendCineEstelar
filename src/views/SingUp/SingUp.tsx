@@ -4,7 +4,7 @@ import { AppFormSingUp } from "../../components/form/AppFormSingUp";
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 
-function SingUpPage(): React.JSX.Element {
+function SingUp(): React.JSX.Element {
   return (
     <>
     <Header/>
@@ -16,4 +16,4 @@ function SingUpPage(): React.JSX.Element {
   );
 }
 
-export { SingUpPage };
+export { SingUp };

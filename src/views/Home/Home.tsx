@@ -8,6 +8,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "./Home.css";
 import './Home.css'
+import { ButtonBillboard } from "../../components/Button/ButtonBillboard";
 
 function Home(): React.JSX.Element {
   const [movies, setMovies] = useState<MovieClass[] | null>(null);
@@ -62,24 +63,29 @@ function Home(): React.JSX.Element {
         <Header  />
         <div className="main">
           <div className="container-movie">
-          <ImageGallery
-            className="image-gallery"
-            items={imageDetails}
-            showPlayButton={false}
-            showFullscreenButton={false}
-            showThumbnails={false}
-            showBullets={true}
-            autoPlay={true}
-            slideInterval={5000}
-            onSlide={handleSlide}
-          />
+            <div className="image-gallery">
+            <ImageGallery
+              items={imageDetails}
+              showPlayButton={false}
+              showFullscreenButton={false}
+              showThumbnails={false}
+              showBullets={true}
+              autoPlay={true}
+              slideInterval={5000}
+              onSlide={handleSlide}
+            />
+           </div>
 
           {/* renderiza el siguiente parrafo unicamente si existe contenido en imageDetails y ya esta renderizado el componente  ImageGallery*/}
              
-          { isLoaded ? ( 
+          { isLoaded ? (
+            <div className="container-movie-info">
               <p className="movie-title">
                 { imageDetails[currentImageIndex]?.title }
               </p>
+
+              <ButtonBillboard title="Compra ya tus entradas" />
+            </div>   
           ) : (
             <p>Cargando...</p>
           )}

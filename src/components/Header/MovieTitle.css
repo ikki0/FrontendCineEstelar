@@ -1,0 +1,13 @@
+.container-title{
+    height: 35px;
+    font-size: 1.1rem;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container-title:hover{
+    color: var(--colorHover);
+    font-weight: 500;
+}

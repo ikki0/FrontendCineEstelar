@@ -7,6 +7,9 @@ import { Peliculas } from "../views/Peliculas/peliculas";
 import { Colaboradores } from "../views/Colaboraciones/Colaboraciones";
 import { Nosotros } from "../views/Por que nosotros/Nosotros";
 import { Reservas } from "../views/Reservas/Reservas";
+import { Proyecciones } from "../views/Proyecciones/Proyecciones";
+import Login from "../components/Login/Login";
+import { SingUp } from "../views/SingUp/SingUp";
 
 function RouteComponent(): React.JSX.Element{
     return (
@@ -21,6 +24,10 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/porquenosotros" element={ <Nosotros /> } />
             <Route path="/quienessomos" element={ <Colaboradores /> } />
             <Route path="/reservas" element={ <Reservas /> } />
+            <Route path="/proyecciones" element={ <Proyecciones /> } />
+            <Route path="/registrarse" element={ <Login /> } />
+            <Route path="/iniciar-sesion" element={ <SingUp /> } />
+            <Route path="*" element={ <h1>Esta Página Todavía no existe 🤔</h1> } />
             
         </Routes>
     );
