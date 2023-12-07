@@ -63,6 +63,7 @@ function Home(): React.JSX.Element {
         <Header  />
         <div className="main">
           <div className="container-movie">
+<<<<<<< HEAD
             <div className="image-gallery">
             <ImageGallery
               items={imageDetails}
@@ -75,6 +76,19 @@ function Home(): React.JSX.Element {
               onSlide={handleSlide}
             />
            </div>
+=======
+          <ImageGallery
+       
+            items={imageDetails}
+            showPlayButton={false}
+            showFullscreenButton={false}
+            showThumbnails={false}
+            showBullets={true}
+            autoPlay={true}
+            slideInterval={5000}
+            onSlide={handleSlide}
+          />
+>>>>>>> e9eddac3a370ff85971e24d86ec1cad2bedd7b1b
 
           {/* renderiza el siguiente parrafo unicamente si existe contenido en imageDetails y ya esta renderizado el componente  ImageGallery*/}
              
