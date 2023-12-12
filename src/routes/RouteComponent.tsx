@@ -7,13 +7,11 @@ import { Peliculas } from "../views/Peliculas/peliculas";
 import { Colaboradores } from "../views/Colaboraciones/Colaboraciones";
 import { Nosotros } from "../views/Por que nosotros/Nosotros";
 import { Reservas } from "../views/Reservas/Reservas";
-<<<<<<< HEAD
 import { Proyecciones } from "../views/Proyecciones/Proyecciones";
 import Login from "../components/Login/Login";
 import { SingUp } from "../views/SingUp/SingUp";
-=======
 import { Contacto } from "../views/Contacto/Contacto";
->>>>>>> e9eddac3a370ff85971e24d86ec1cad2bedd7b1b
+
 
 function RouteComponent(): React.JSX.Element{
     return (

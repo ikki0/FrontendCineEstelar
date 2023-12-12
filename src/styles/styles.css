@@ -12,7 +12,7 @@
     border: none;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;    
-    list-style: none !important;
+    list-style: none;
 }
 
 body {
@@ -25,6 +25,10 @@ a {
 
 a:hover {
     color: rgb(0, 162, 255) !important;
-  }
-  
+}
+
+.main{
+    min-height: 80vh;
+    /* background-color: red; */
+}
   

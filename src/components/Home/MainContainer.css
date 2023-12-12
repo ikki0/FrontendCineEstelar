@@ -1,0 +1,17 @@
+.container-section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 80px;
+  /* background-color: red; */
+  padding: 2rem 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* background-color: red; */
+  width: 80%;
+  margin: auto;
+  row-gap: 20px;
+  column-gap: 10px;
+}

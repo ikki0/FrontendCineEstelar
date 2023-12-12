@@ -12,7 +12,7 @@ function Header(): React.JSX.Element {
   const [isLogged, setIsLogged] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsLogged(true);
+    // setIsLogged(true);
   }, []);
   
   function handleClick() {

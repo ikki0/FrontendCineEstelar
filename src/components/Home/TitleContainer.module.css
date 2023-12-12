@@ -1,0 +1,23 @@
+.containerHeader {
+    display: flex;
+    justify-content: center;
+  
+    & .title {
+      display: inline-block;
+      text-align: center;
+      /* background-color: red; */
+      font-size: 2rem;
+      text-transform: uppercase;
+      font-weight: 500;
+      position: relative;
+    }
+  
+    .title::after {
+      content: "";
+      position: absolute;
+      left: 25%; /* Centra el borde */
+      bottom: -10px; /* Posiciona el borde en la parte inferior */
+      width: 50%; /* Hace que el borde ocupe la mitad del ancho */
+      border-bottom: 2px solid var(--colorHover); /* Define el borde */
+      }
+  }

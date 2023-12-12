@@ -1,4 +1,5 @@
 import './App.css';
+import './styles/styles.css';
 
 import { RouteComponent } from './routes/RouteComponent';
 
