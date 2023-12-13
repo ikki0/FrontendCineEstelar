@@ -60,3 +60,12 @@
     width: 22px;
     height: auto;
 }
+
+.close-sesion {
+    cursor: pointer;
+}
+
+.close-sesion:hover {
+    color: rgb(0, 162, 255) !important;
+}
+
