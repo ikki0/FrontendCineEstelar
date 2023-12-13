@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './ContactoComponent.css';
 
 function ContactoComponent(): React.JSX.Element {
@@ -6,28 +8,70 @@ function ContactoComponent(): React.JSX.Element {
   const [email, setEmail] = useState('');
   const [mensaje, setMensaje] = useState('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const destinario = 'destinatario@example.com';
-    const enlaceMailto = `mailto:${destinario}?subject=Mensaje%20de%20${encodeURIComponent(
-      nombre
-    )}&body=${encodeURIComponent(mensaje)}%0D%0A%0D%0A${encodeURIComponent(email)}`;
+    const destinatario = 'xxx@gmail.com';
+    const url = 'https://formsubmit.co/ajax/xxx@gmail.com';
 
-    window.location.href = enlaceMailto;
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          destinatario,
+          subject: `Mensaje de ${nombre}`,
+          message: mensaje,
+          replyTo: email,
+        }),
+      });
+
+      if (response.ok) {
+        toast.success('Mensaje enviado correctamente', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+        });
+        setNombre('');
+        setEmail('');
+        setMensaje('');
+      } else {
+        toast.error('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="nombre">Nombre:</label><br />
-      <input type="text" id="nombre" name="nombre" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} /><br />
-      <label htmlFor="email">Email:</label><br />
-      <input type="email" id="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} /><br />
-      <label htmlFor="mensaje">Mensaje:</label><br />
-      <textarea id="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje..." value={mensaje} onChange={(e) => setMensaje(e.target.value)}></textarea><br />
-      <input type="submit" value="Enviar mensaje" />
+      <div className="form">
+        <h1 className='h1'>Contacto</h1>
+        <div className="grupo">
+          <label>Nombre</label>
+          <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required /><span className="barra"></span>
+        </div>
+        <div className="grupo">
+          <label>Email</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /><span className="barra"></span>
+        </div>
+        <div className="grupo">
+          <label>Mensaje</label>
+          <textarea value={mensaje} onChange={(e) => setMensaje(e.target.value)} required></textarea><span className="barra"></span>
+        </div>
+        <button className='btn' type="submit">Enviar mensaje</button>
+      </div>
+      <ToastContainer />
     </form>
   );
 }
 
-export { ContactoComponent };
+export default ContactoComponent;

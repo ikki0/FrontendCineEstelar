@@ -1,7 +1,7 @@
 import './Contacto.css'
-import { ContactoComponent } from "../../components/Footer/ContactoComponent"
 import { Footer } from "../../components/Footer/Footer"
 import { Header } from "../../components/Header/Header"
+import ContactoComponent from '../../components/Footer/ContactoComponent'
 
 
 function Contacto (): React.JSX.Element {
@@ -9,7 +9,7 @@ function Contacto (): React.JSX.Element {
       <>
       <Header/>
       <div className="main">
-        <ContactoComponent/>
+      <ContactoComponent />
       </div>
       <Footer/>
       </>
