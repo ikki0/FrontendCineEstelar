@@ -48,13 +48,13 @@ function Header(): React.JSX.Element {
 
           <ul>
             <li>
-              <Link to="./cines" className="title-header">
+              <Link to="/cines" className="title-header">
                 <p className="title-header">Cines</p>
               </Link>
             </li>
 
             <li>
-              <Link to="./peliculas">
+              <Link to="/peliculas">
                 <p className="title-header">Películas</p>
               </Link>
             </li>
@@ -81,7 +81,7 @@ function Header(): React.JSX.Element {
 
               <li>
                 <picture className="picture-logo">
-                  <Link to="/datos-personales">
+                  <Link to="/perfil">
                     <img
                       className="logo-user"
                       src="/src/assets/images/Header/userWhite.svg"

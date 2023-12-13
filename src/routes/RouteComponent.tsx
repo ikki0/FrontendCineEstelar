@@ -11,6 +11,7 @@ import { Proyecciones } from "../views/Proyecciones/Proyecciones";
 import Login from "../views/Login/Login";
 import { SingUp } from "../views/SingUp/SingUp";
 import { Contacto } from "../views/Contacto/Contacto";
+import { Perfil } from "../views/Perfil/Perfil";
 
 
 function RouteComponent(): React.JSX.Element{
@@ -28,6 +29,7 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/proyecciones" element={ <Proyecciones /> } />
             <Route path="/iniciar-sesion" element={ <Login /> } />
             <Route path="/registrarse" element={ <SingUp /> } />
+            <Route path="/perfil" element={ <Perfil />}/>
             <Route path="*" element={ <h1>Esta Página Todavía no existe 🤔</h1> } />
             
         </Routes>

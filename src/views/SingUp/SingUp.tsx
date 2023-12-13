@@ -8,6 +8,7 @@ import { Validator } from '../../classes/Validator';
 
 import style from './SingUp.module.css';
 import { MessageError } from '../../components/SingUp/MessageError';
+import { toast, ToastContainer } from 'react-toastify';
 
 function SingUp(): React.JSX.Element {
   type ErrorMessages = {
@@ -16,6 +17,7 @@ function SingUp(): React.JSX.Element {
     password: string;
     age: string;
     repeatPassword: string;
+    emptyFields: string
   };
 
   const [nickName, setNickName] = useState<string>('');
@@ -28,12 +30,87 @@ function SingUp(): React.JSX.Element {
     email: "",
     age: "",
     password: "",
-    repeatPassword: ""
-
+    repeatPassword: "",
+    emptyFields: ""
   });
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    console.log("se hizo un submit");
+    event.preventDefault();
+    // Verifica si todos los campos del formulario están vacíos
+    const allFieldsEmpty = [nickName, email, password, passwordRepeat, age].some((field) => field === "");
+    
+
+    if (allFieldsEmpty) {
+      console.log("Error: existen campos del formulario están vacíos");
+
+      setErrorMessages(prevState => ({
+        ...prevState,
+        emptyFields: "Todos los campos deben ser rellenados"
+      }));
+
+      return;
+    } else {
+      setErrorMessages(prevState => ({
+        ...prevState,
+        emptyFields: ""
+      }));
+    }
+
+    // Verifica si todos los campos de error están vacíos
+    const allFieldsValid = Object.values(errorMessages).every((message) => message === "");
+
+    if (allFieldsValid) {
+      console.log("No existen errores en los campos del formulario");
+
+      const url = new URL('http://localhost:8081/usuarios');
+
+      const data = {
+        correo_cliente: email,
+        nick_cliente: nickName,
+        contrasenya_cliente: password,
+        edad_cliente: age
+      }
+
+      fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          // Si la data success es false enviar el mensaje de error  de data.message
+          if (data.success === false) {
+            console.log("error en la petición de registro con la peticion fetch");
+            toast.error('Error registro de usuario. Por favor, inténtalo de nuevo más tarde', {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 3500,
+            });
+          } else {
+            putAllFieldsEmpty();
+            toast.success('Usuario registrador correctamente', {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 3500,
+            });
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
+    } else {
+      console.log("Existen errores con los validadores del formulario")
+    }
+  }
+
+  function putAllFieldsEmpty() {
+    setNickName("");
+    setEmail("");
+    setAge("");
+    setPassword("");
+    setPasswordRepeat("");
   }
 
   function handleNickNameChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -130,8 +207,12 @@ function SingUp(): React.JSX.Element {
       <Header />
       <main className={style.main}>
         <div className={style.containerLogin}>
-          <TitleContainer title='registrarse' />
           <main className={style.containerMain}>
+            
+            {errorMessages.emptyFields && (
+            <MessageError text={errorMessages.emptyFields} />
+            )}
+            <TitleContainer title='registrarse' />
             <form className={style.form} onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="nickName">Nick:</label>
@@ -203,13 +284,13 @@ function SingUp(): React.JSX.Element {
 
               <div className={style.containerDivCheckbox}>
                 <input
-                    className={style.checkbox}
-                    type="checkbox"
-                    id="checkbox"
-                    required
+                  className={style.checkbox}
+                  type="checkbox"
+                  id="checkbox"
+                  required
                 />
-                <label 
-                  className={style.labelCheckbox} 
+                <label
+                  className={style.labelCheckbox}
                   htmlFor="checkbox"
                 >
                   Aceptar la Política de Privacidad y los Términos y Condiciones
@@ -227,6 +308,7 @@ function SingUp(): React.JSX.Element {
             </form>
           </main>
         </div>
+        <ToastContainer />
       </main>
       <Footer />
     </>

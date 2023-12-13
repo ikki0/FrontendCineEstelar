@@ -66,8 +66,8 @@ export default function Login() {
       <Header />
       <main className={style.main}>
         <div className={style.containerLogin}>
+          
           <TitleContainer title='iniciar sesión' />
-
           <main className={style.containerMain}>
             {
               messageError &&
