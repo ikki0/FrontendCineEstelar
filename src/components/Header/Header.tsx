@@ -12,11 +12,18 @@ function Header(): React.JSX.Element {
   const [isLogged, setIsLogged] = useState<boolean>(false);
 
   useEffect(() => {
-    // setIsLogged(true);
+    if (localStorage.getItem("name")) {
+      setIsLogged(true);
+    }
   }, []);
   
   function handleClick() {
     setSearchIsClicked(true);
+  }
+
+  function signOut() {
+    localStorage.removeItem("name");
+    setIsLogged(false);
   }
 
   return (
@@ -69,7 +76,7 @@ function Header(): React.JSX.Element {
             {isLogged ? (
               <>
               <li>
-                <RegardsUser nameUser="Sergio" />
+                <RegardsUser nameUser={localStorage.getItem("name") ?? ""}/>
               </li>
 
               <li>
@@ -82,6 +89,15 @@ function Header(): React.JSX.Element {
                     />
                   </Link>
                 </picture>
+              </li>
+
+              <li>
+                <p
+                  onClick={signOut}
+                  className="title-header close-sesion"
+                  >
+                    Cerrar Sesión
+                  </p>
               </li>
               </>
               ) : ( 

@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.errorDiv {
+    background-color: rgb(255, 1, 52);
+    border-radius: 3px;
+    padding: 1rem;
+    display: flex;
+    column-gap: 0.5rem;
+
+    & .errorPicture {
+        /* background-color: rgb(26, 26, 0); */
+        display: flex;
+        /* padding: 0.3rem; */
+        & .errorImg{
+            width: 1rem;
+        }
+    }
+
+    & .errorText {
+        color: rgb(107, 0, 21);
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.035rem;
+        padding: 0.6rem;
+        font-size: 0.98rem;
+    }
+}

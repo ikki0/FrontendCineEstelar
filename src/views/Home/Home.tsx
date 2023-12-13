@@ -16,7 +16,7 @@ function Home(): React.JSX.Element {
   const [movies, setMovies] = useState<MovieClass[]>([]);
   const [imageDetails, setImageDetails] = useState<ImageDetailInterface[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); 
   // Es necesario utilizar useEffect para realizar cualquier petición a una API para evitar peticiones infinitas
   useEffect(() => {
     // Realizar la petición a la API
@@ -37,15 +37,14 @@ function Home(): React.JSX.Element {
           }
         );
         setImageDetails(filterImageDetails);
-        if (movies.length) {
-          setIsLoading(false);
-        }
+        setIsLoading(false);
+        
       })
       .catch((error) => {
         console.error("error durante la petición get /peliculas:", error);
         setIsLoading(false); 
       });
-  }, [movies]);
+  }, []);
 
 
   if (isLoading) {
