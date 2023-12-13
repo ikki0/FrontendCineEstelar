@@ -9,10 +9,11 @@
   .footerElements {
     display: flex;
     justify-content: space-around;
+    align-items: center;
   }
 
   .footerElements a{
-    color: rgb(124, 122, 122);
+    color:white;
   }
   
   
