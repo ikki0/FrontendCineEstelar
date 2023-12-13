@@ -5,13 +5,13 @@ function Footer(): React.JSX.Element {
   return (
     <footer className="footer">
       <div className="footerElements">
-        <Link to="./contacto">
+        <Link to="/contacto">
           <a href="">Contacto</a>
         </Link>
-        <Link to="./porquenosotros">
+        <Link to="/porquenosotros">
           <a href="">¿Por qué nosotros?</a>
         </Link>
-        <Link to="./quienessomos">
+        <Link to="/quienessomos">
           <a href="">¿Quiénes somos?</a>
         </Link>
       </div>

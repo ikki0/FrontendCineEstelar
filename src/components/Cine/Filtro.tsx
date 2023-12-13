@@ -5,22 +5,18 @@ import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
-import ListItem from '@mui/material/ListItem';
 
 type Anchor = 'left';
 
 interface Genero {
-  id: number;
-  nombre: string;
+  idGenero: number;
+  nameGenero: string;
 }
-  
-const response: Genero[] =[
-  { "id": 1, "nombre": "Acción" },
-  { "id": 2, "nombre": "Comedia" },
-  { "id": 3, "nombre": "Drama" },
-  { "id": 4, "nombre": "Ciencia ficción" },
-  { "id": 5, "nombre": "Aventura" }
-]
+
+interface RequestOptions {
+  method: string;
+  redirect?: RequestRedirect | undefined;
+}
 
 export default function Filtro() {
   const [state, setState] = React.useState<{ [key in Anchor]: boolean }>({
@@ -28,6 +24,19 @@ export default function Filtro() {
   });
 
   const [openGender, setOpenGender] = React.useState(false);
+  const [generos, setGeneros] = React.useState<Genero[]>([]);
+
+  React.useEffect(() => {
+    const requestOptions: RequestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    fetch("http://localhost:8081/generos", requestOptions)
+      .then(response => response.json())
+      .then(data => setGeneros(data))
+      .catch(error => console.log('error', error));
+  }, []);
 
   const handleGenderClick = () => {
     setOpenGender(!openGender);
@@ -35,17 +44,17 @@ export default function Filtro() {
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
+      (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (
+          event.type === 'keydown' &&
+          ((event as React.KeyboardEvent).key === 'Tab' ||
+            (event as React.KeyboardEvent).key === 'Shift')
+        ) {
+          return;
+        }
 
-      setState({ ...state, [anchor]: open });
-    };
+        setState({ ...state, [anchor]: open });
+      };
 
   const list = (anchor: Anchor) => (
     <Box
@@ -59,15 +68,15 @@ export default function Filtro() {
         </ListItemButton>
         <Collapse in={openGender} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {/* Esta es la sección actualizada con la lista de géneros */}
-            <div className='genres'> {/* Comentario: Aquí se sitúa la lista de géneros */}
-              {response.map(generos => (
-                <ListItem key={generos.id} sx={{ pl: 4 }}>
-                  <ListItemText primary={generos.nombre} />
-                </ListItem>
+            {/* Aquí se sitúa la lista de géneros */}
+            <div className='genres'>
+              {generos.map(genero => (
+                <ListItemButton key={genero.idGenero} sx={{ pl: 4 }}>
+                  <ListItemText primary={genero.nameGenero} />
+                </ListItemButton>
               ))}
+
             </div>
-            {/* Fin de la sección actualizada */}
           </List>
         </Collapse>
       </List>
@@ -88,7 +97,7 @@ export default function Filtro() {
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
-            PaperProps={{ style: { backgroundColor: '#ffc22c' } }} // Establecer el color de fondo
+            PaperProps={{ style: { backgroundColor: '#ffc22c' } }}
           >
             {list(anchor)}
           </Drawer>
