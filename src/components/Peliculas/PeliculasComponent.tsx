@@ -5,7 +5,6 @@ import { MainContainer } from "../../components/Home/MainContainer";
 import { SpinnerCharge } from "../../components/SpinnerCharge/SpinnerCharge";
 import './PeliculasComponent.css';
 
-
 function PeliculasComponent(): React.JSX.Element {
   const [movies, setMovies] = useState<MovieClass[]>([]);
   const [isLoading, setIsLoading] = useState(true); 
@@ -34,7 +33,7 @@ function PeliculasComponent(): React.JSX.Element {
     <div className="main">
       <div className="container-movie">
         {movies.length ? (
-          <MainContainer title='Películas' moviesObject={movies} />
+          <MainContainer title='Todas las películas' moviesObject={movies} />
         ) : (
           <p>No hay Películas.</p>
         )}

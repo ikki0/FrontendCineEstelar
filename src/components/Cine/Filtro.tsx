@@ -5,11 +5,15 @@ import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
+import { useState } from 'react';
+import PeliculasFilter from '../Peliculas/PeliculasFilter';
+
+
 
 type Anchor = 'left';
 
 interface Genero {
-  idGenero: number;
+  idGenero: number | string;
   nameGenero: string;
 }
 
@@ -18,13 +22,19 @@ interface RequestOptions {
   redirect?: RequestRedirect | undefined;
 }
 
-export default function Filtro() {
+interface FiltroProps {
+  onGeneroClick: (generoId: number | string) => void;
+}
+
+
+export default function Filtro({ onGeneroClick }: FiltroProps): React.JSX.Element  {
   const [state, setState] = React.useState<{ [key in Anchor]: boolean }>({
     left: false,
   });
 
   const [openGender, setOpenGender] = React.useState(false);
   const [generos, setGeneros] = React.useState<Genero[]>([]);
+  const [openMovies, setOpenMovies] = useState<number | string | null>(null);
 
   React.useEffect(() => {
     const requestOptions: RequestOptions = {
@@ -42,6 +52,10 @@ export default function Filtro() {
     setOpenGender(!openGender);
   };
 
+  const handleMoviesClick = (idGenero: number | string) => {
+    setOpenMovies(openMovies === idGenero ? null : idGenero);
+  };
+
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
       (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -55,33 +69,6 @@ export default function Filtro() {
 
         setState({ ...state, [anchor]: open });
       };
-
-  const list = (anchor: Anchor) => (
-    <Box
-      sx={{ width: 250 }}
-      role="presentation"
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        <ListItemButton onClick={handleGenderClick}>
-          <ListItemText primary="Género" />
-        </ListItemButton>
-        <Collapse in={openGender} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {/* Aquí se sitúa la lista de géneros */}
-            <div className='genres'>
-              {generos.map(genero => (
-                <ListItemButton key={genero.idGenero} sx={{ pl: 4 }}>
-                  <ListItemText primary={genero.nameGenero} />
-                </ListItemButton>
-              ))}
-
-            </div>
-          </List>
-        </Collapse>
-      </List>
-    </Box>
-  );
 
   return (
     <React.Fragment>
@@ -99,8 +86,37 @@ export default function Filtro() {
             onClose={toggleDrawer(anchor, false)}
             PaperProps={{ style: { backgroundColor: '#ffc22c' } }}
           >
-            {list(anchor)}
+            <Box
+              sx={{ width: 250 }}
+              role="presentation"
+              onKeyDown={toggleDrawer(anchor, false)}
+            >
+              <List>
+                <ListItemButton onClick={handleGenderClick}>
+                  <ListItemText primary="Género" />
+                </ListItemButton>
+                <Collapse in={openGender} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <div className='genres'>
+                      {generos.map(genero => (
+                        <ListItemButton key={genero.idGenero} sx={{ pl: 4 }}>
+                          <ListItemText
+                            primary={genero.nameGenero}
+                            onClick={() => handleMoviesClick(genero.idGenero as number | string)}
+                          />
+                        </ListItemButton>
+                      ))}
+                    </div>
+                  </List>
+                </Collapse>
+              </List>
+            </Box>
           </Drawer>
+          {openMovies && (
+            <div className="movies-container">
+              <PeliculasFilter generoId={openMovies} />
+            </div>
+          )}
         </React.Fragment>
       ))}
     </React.Fragment>
