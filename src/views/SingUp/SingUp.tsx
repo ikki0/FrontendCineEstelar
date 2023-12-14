@@ -55,10 +55,12 @@ function SingUp(): React.JSX.Element {
 
     setErrorMessages(newErrorMessages);
     // Verifica si todos los campos de error están vacíos
-    const allFieldsValid = Object.values(errorMessages).every((message) => message === "");
+    const someFieldNoValid = Object.values(newErrorMessages).some((message) => message !== "");
 
-    if (allFieldsValid) {
-      console.log("No existen errores en los campos del formulario");
+    if (someFieldNoValid) {
+      console.log('existen errores en los campos del del formulario');
+      return;
+    }
 
       const url = new URL('http://localhost:8081/usuarios');
 
@@ -98,10 +100,6 @@ function SingUp(): React.JSX.Element {
         .catch((error) => {
           console.error('Error:', error);
         });
-
-    } else {
-      console.log("Existen errores en los campos del formulario")
-    }
   }
 
   function putAllFieldsEmpty() {
