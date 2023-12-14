@@ -122,18 +122,20 @@ export default function Login() {
       <Header />
       <main className={style.main}>
         <div className={style.containerLogin}>
-          {
-            ErrorConnectionMessage && (
-              <MessageError text={ErrorConnectionMessage} />
-            )
-          }
-
-          {
-            errorMessages.emptyFields && (
-              <MessageError text={errorMessages.emptyFields} />
-            )
-          }
+          <header className={style.containerHeader}>
           <TitleContainer title='iniciar sesión' />
+            {
+              ErrorConnectionMessage && (
+                <MessageError text={ErrorConnectionMessage} />
+              )
+            }
+
+            {
+              errorMessages.emptyFields && (
+                <MessageError text={errorMessages.emptyFields} />
+              )
+            }
+          </header>
           <main className={style.containerMain}>
             <form className={style.form} onSubmit={handleSubmit}>
               <div>

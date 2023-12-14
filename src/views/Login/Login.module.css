@@ -12,6 +12,12 @@
     padding: 1rem;
     border-radius: 5px;
 
+    & .containerHeader {
+        display: flex;
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+
     & .form {
         display: flex;
         flex-direction: column;

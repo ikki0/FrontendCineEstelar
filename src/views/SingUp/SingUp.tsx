@@ -38,21 +38,22 @@ function SingUp(): React.JSX.Element {
     event.preventDefault();
     // Verifica si todos los campos del formulario están vacíos
     const fieldsEmpty = [nickName, email, password, passwordRepeat, age].some((field) => field === "");
-    
+    let newErrorMessages = {...errorMessages};
 
     if (fieldsEmpty) {
-      setErrorMessages(prevState => ({
-        ...prevState,
+      newErrorMessages = {
+        ...newErrorMessages,
         emptyFields: "Todos los campos deben ser rellenados"
-      }));
-      return;
+      };
+
     } else {
-      setErrorMessages(prevState => ({
-        ...prevState,
+      newErrorMessages = {
+        ...newErrorMessages,
         emptyFields: ""
-      }));
+      };
     }
 
+    setErrorMessages(newErrorMessages);
     // Verifica si todos los campos de error están vacíos
     const allFieldsValid = Object.values(errorMessages).every((message) => message === "");
 
@@ -62,10 +63,10 @@ function SingUp(): React.JSX.Element {
       const url = new URL('http://localhost:8081/usuarios');
 
       const data = {
-        correo_cliente: email,
-        nick_cliente: nickName,
-        contrasenya_cliente: password,
-        edad_cliente: age
+        correoCliente: email,
+        nickCliente: nickName,
+        contrasenyaCliente: password,
+        edadCliente: age
       }
 
       fetch(url, {
@@ -80,14 +81,14 @@ function SingUp(): React.JSX.Element {
           // Si la data success es false enviar toast error
           // Si la data success es false enviar el mensaje de error
           if (data.success === false) {
-            toast.error('Error registro de usuario. Por favor, verifique los campos', {
+            toast.error('Error en el registro de usuario. Por favor, verifique los campos', {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 3500,
             });
             setErrorConnectionMessage(data.message);
           } else {
             putAllFieldsEmpty();
-            toast.success('Usuario registrador correctamente', {
+            toast.success('Usuario registrado correctamente', {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 3500,
             });
@@ -205,16 +206,19 @@ function SingUp(): React.JSX.Element {
       <main className={style.main}>
         <div className={style.containerLogin}>
           <main className={style.containerMain}>
-            {
-              errorConnectionMessage && (
-                <MessageError text={errorConnectionMessage} />
-              )
-            }
+            <header className={style.containerHeader}>
+              <TitleContainer title='registrarse' />
+              {
+                errorConnectionMessage && (
+                  <MessageError text={errorConnectionMessage} />
+                )
+              }
 
-            {errorMessages.emptyFields && (
-            <MessageError text={errorMessages.emptyFields} />
-            )}
-            <TitleContainer title='registrarse' />
+              {errorMessages.emptyFields && (
+              <MessageError text={errorMessages.emptyFields} />
+              )}
+            </header>
+           
             <form className={style.form} onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="nickName">Nick:</label>
