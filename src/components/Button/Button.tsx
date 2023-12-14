@@ -11,7 +11,7 @@ function Button({ label }: ButtonProps) : React.JSX.Element {
         <button className="button">
             <span>{ label} </span>
             <svg>
-		        <rect x="0" y ="0" fill="none"></rect>
+                <rect x="0" y ="0" fill="none"></rect>
 			</svg>
         </button>
     )

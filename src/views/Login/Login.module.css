@@ -5,15 +5,20 @@
 .containerLogin {
     display: flex;
     flex-direction: column;
-    row-gap: 3rem;
+    row-gap: 1rem;
     max-width: 500px;
     margin: auto;
     border: 1px solid #ccc;
     padding: 1rem;
     border-radius: 5px;
 
+    & .form {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+
     & .containerError {
-        /* background-color: red; */
         display: flex;
         justify-content: center;
 
@@ -29,32 +34,4 @@
             letter-spacing: 0.035rem;
         }
     }
-
-    & .containerHeader {
-        /* background-color: antiquewhite !important; */
-        display: flex;
-        justify-content: center;
-    }
-
-    & .containerButton {
-        /* background-color: red; */
-        display: flex;
-        justify-content: center;
-
-        & .buttonLogin {
-            width: 100%;
-            background-color: rgb(33, 218, 33);
-            opacity: 0.9;
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
-
-        & .buttonLogin:hover {
-            background-color: rgb(33, 218, 33);
-            opacity: 1;
-        }
-    }
-   
 }

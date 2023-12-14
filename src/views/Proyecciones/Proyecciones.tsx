@@ -17,7 +17,7 @@ function Proyecciones(): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Realizar la petición a la API
+    // Realizar la petición a la API   
     fetch("http://localhost:8081/peliculas")
       .then((response) => response.json())
       .then((data: MovieInterface[]) => {
@@ -33,15 +33,14 @@ function Proyecciones(): React.JSX.Element {
             };
           }
         ));
-        if (movies.length) {
-          setIsLoading(false);
-        }
+        
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("error durante la petición get /peliculas:", error);
         setIsLoading(false); // También establece isLoading en false en caso de error
       });
-  }, [movies]);
+  }, []);
 
   if (isLoading) {
     return (
@@ -89,8 +88,6 @@ function Proyecciones(): React.JSX.Element {
         </div>
       </div>
       <Footer />
-      <main>
-      </main>
     </>
   );
 }

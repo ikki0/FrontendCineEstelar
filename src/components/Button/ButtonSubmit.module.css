@@ -1,0 +1,16 @@
+.button {
+    width: 100%;
+    background-color: rgb(33, 218, 33);
+    opacity: 0.9;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    letter-spacing: 0.035rem;
+    font-weight: normal;
+}
+
+.button:hover {
+    background-color: rgb(33, 218, 33);
+    opacity: 1;
+}

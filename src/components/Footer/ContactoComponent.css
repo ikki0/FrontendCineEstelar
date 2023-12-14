@@ -1,31 +1,37 @@
 .form {
     width: 500px;
     margin: 0 auto;
-    text-align: left;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
   }
-  .h1{
-    text-align: center;
+
+  .contacto-header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
   }
+
   label {
     display: block;
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: bold;
   }
-  
+
   
   input,
   textarea {
     width: 100%;
     padding: 12px 20px;
-    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
+    margin-bottom: 20px;
   }
   
 .btn {
@@ -45,3 +51,5 @@
     background-color: #ffc32c7d;
     transition-delay: 0.1s;
   }
+
+

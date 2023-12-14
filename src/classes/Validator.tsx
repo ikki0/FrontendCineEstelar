@@ -1,7 +1,7 @@
 class Validator {
     static validateNick(nick: string): boolean {
       // Verifica que el nick tenga al menos 3 carácteres 
-      return /[a-zA-Z]{3,}/.test(nick);
+      return /^[a-zA-Z0-9]{3,}$/.test(nick);
     }
   
     static validateEmail(email: string): boolean {

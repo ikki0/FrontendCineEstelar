@@ -5,7 +5,7 @@ interface RegardsUserProps {
 function RegardsUser({nameUser}: RegardsUserProps): React.JSX.Element {
     return (
         <div>
-            <p className="title-header">Bienvenido {nameUser}</p>
+            <p className="title-header">{nameUser}</p>
         </div>
     );
 }

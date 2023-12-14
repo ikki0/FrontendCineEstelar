@@ -2,14 +2,53 @@ import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './ContactoComponent.css';
+import { TitleContainer } from '../Home/TitleContainer';
+import { ButtonSubmit } from '../Button/ButtonSubmit';
+import { Validator } from '../../classes/Validator';
+import { MessageError } from '../SingUp/MessageError';
 
 function ContactoComponent(): React.JSX.Element {
+  type ErrorMessages = {
+    email: string;
+    emptyFields: string
+  };
+
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [mensaje, setMensaje] = useState('');
+  const [errorMessages, setErrorMessages] = useState<ErrorMessages>({
+    email: "",
+    emptyFields: ""
+  });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // Verificar Error si algun campo esta vacío
+    const fieldsEmpty = [email, nombre, mensaje].some((field) => field === "");
+    let newErrorMessages = {...errorMessages};
+
+    if (fieldsEmpty) {
+      newErrorMessages = {
+        ...newErrorMessages,
+        emptyFields: "Todos los campos deben ser rellenados"
+      };
+
+    } else {
+      newErrorMessages = {
+        ...newErrorMessages,
+        emptyFields: ""
+      };
+    }
+
+    setErrorMessages(newErrorMessages);
+    // Verificar Error si existe algun mensaje de error
+    const someFieldNoValid = Object.values(newErrorMessages).some((message) => message !== "");
+
+    if (someFieldNoValid) {
+      console.log("Existen errores en los campos del formulario");
+      return;
+    }
 
     const destinatario = 'xxx@gmail.com';
     const url = 'https://formsubmit.co/ajax/xxx@gmail.com';
@@ -51,23 +90,55 @@ function ContactoComponent(): React.JSX.Element {
     }
   };
 
+  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+
+    if (!Validator.validateEmail(newEmail)) {
+      setErrorMessages(prevState => ({
+        ...prevState,
+        email: "El correo debe de cumplir con el patrón de correo electrónico"
+      }));
+    } else {
+      setErrorMessages(prevState => ({
+        ...prevState,
+        email: ""
+      }));
+    }
+  }
+
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="form">
-        <h1 className='h1'>Contacto</h1>
+        <header className='contacto-header'>
+          <TitleContainer title="Contacto" />
+          {errorMessages.emptyFields && (
+            <MessageError text={errorMessages.emptyFields} />
+          )}
+        </header>
         <div className="grupo">
           <label>Nombre</label>
-          <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required /><span className="barra"></span>
+          <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} /><span className="barra"></span>
         </div>
         <div className="grupo">
           <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /><span className="barra"></span>
+          {/* <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} /><span className="barra"></span> */}
+          <input
+            type="text"
+            value={email}
+            onChange={handleEmailChange}
+          />
+
+          {errorMessages.email && (
+            <MessageError text={errorMessages.email} />
+          )}
         </div>
         <div className="grupo">
           <label>Mensaje</label>
-          <textarea value={mensaje} onChange={(e) => setMensaje(e.target.value)} required></textarea><span className="barra"></span>
+          <textarea value={mensaje} onChange={(e) => setMensaje(e.target.value)} ></textarea><span className="barra"></span>
         </div>
-        <button className='btn' type="submit">Enviar mensaje</button>
+        <ButtonSubmit text="Enviar mensaje" />
       </div>
       <ToastContainer />
     </form>

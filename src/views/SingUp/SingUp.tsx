@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-// import './SingUp.css'
-// import { AppFormSingUp } from "../../components/form/AppFormSingUp";
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import { TitleContainer } from '../../components/Home/TitleContainer';
 import { Validator } from '../../classes/Validator';
+import { MessageError } from '../../components/SingUp/MessageError';
 
 import style from './SingUp.module.css';
-import { MessageError } from '../../components/SingUp/MessageError';
 import { toast, ToastContainer } from 'react-toastify';
+import { ButtonSubmit } from '../../components/Button/ButtonSubmit';
 
 function SingUp(): React.JSX.Element {
   type ErrorMessages = {
@@ -33,21 +32,19 @@ function SingUp(): React.JSX.Element {
     repeatPassword: "",
     emptyFields: ""
   });
+  const [errorConnectionMessage, setErrorConnectionMessage] = useState<string>("");
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     // Verifica si todos los campos del formulario están vacíos
-    const allFieldsEmpty = [nickName, email, password, passwordRepeat, age].some((field) => field === "");
+    const fieldsEmpty = [nickName, email, password, passwordRepeat, age].some((field) => field === "");
     
 
-    if (allFieldsEmpty) {
-      console.log("Error: existen campos del formulario están vacíos");
-
+    if (fieldsEmpty) {
       setErrorMessages(prevState => ({
         ...prevState,
         emptyFields: "Todos los campos deben ser rellenados"
       }));
-
       return;
     } else {
       setErrorMessages(prevState => ({
@@ -80,20 +77,21 @@ function SingUp(): React.JSX.Element {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log('Success:', data);
-          // Si la data success es false enviar el mensaje de error  de data.message
+          // Si la data success es false enviar toast error
+          // Si la data success es false enviar el mensaje de error
           if (data.success === false) {
-            console.log("error en la petición de registro con la peticion fetch");
-            toast.error('Error registro de usuario. Por favor, inténtalo de nuevo más tarde', {
+            toast.error('Error registro de usuario. Por favor, verifique los campos', {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 3500,
             });
+            setErrorConnectionMessage(data.message);
           } else {
             putAllFieldsEmpty();
             toast.success('Usuario registrador correctamente', {
               position: toast.POSITION.TOP_RIGHT,
               autoClose: 3500,
             });
+            setErrorConnectionMessage("");
           }
         })
         .catch((error) => {
@@ -101,7 +99,7 @@ function SingUp(): React.JSX.Element {
         });
 
     } else {
-      console.log("Existen errores con los validadores del formulario")
+      console.log("Existen errores en los campos del formulario")
     }
   }
 
@@ -120,7 +118,7 @@ function SingUp(): React.JSX.Element {
     if (!Validator.validateNick(newNickName)) {
       setErrorMessages(prevState => ({
         ...prevState,
-        nickName: "El nick debe contener al menos 3 carácteres alfabéticos"
+        nickName: "El nick debe contener al menos 3 carácteres alfanuméricos"
       }));
     } else {
       setErrorMessages(prevState => ({
@@ -143,7 +141,6 @@ function SingUp(): React.JSX.Element {
         ...prevState,
         email: ""
       }));
-
     }
   }
 
@@ -208,7 +205,12 @@ function SingUp(): React.JSX.Element {
       <main className={style.main}>
         <div className={style.containerLogin}>
           <main className={style.containerMain}>
-            
+            {
+              errorConnectionMessage && (
+                <MessageError text={errorConnectionMessage} />
+              )
+            }
+
             {errorMessages.emptyFields && (
             <MessageError text={errorMessages.emptyFields} />
             )}
@@ -298,12 +300,8 @@ function SingUp(): React.JSX.Element {
               </div>
 
               <div className={style.containerButton}>
-                <button
-                  className={style.buttonLogin}
-                  type="submit"
-                >
-                  Registrarse
-                </button>
+
+                <ButtonSubmit text='Registrarse' />
               </div>
             </form>
           </main>
