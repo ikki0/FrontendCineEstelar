@@ -33,27 +33,30 @@ export default function Login() {
     event.preventDefault();
 
     // Verificar si los campos de email y password están vacíos
-    const FieldsEmpty = [email, password].some((field) => field === "");
+    const fieldsEmpty = [email, password].some((field) => field === "");
+    let newErrorMessages = {...errorMessages};
 
     //. Si algún campo esta vació agregar mensaje de error y retornar
-    if (FieldsEmpty) {
-      setErrorMessages(prevState => ({
-        ...prevState,
+    if (fieldsEmpty) {
+      newErrorMessages = {
+        ...newErrorMessages,
         emptyFields: "Todos los campos deben ser rellenados"
-      }));
+      };
 
-      return;
-    }else {
-      setErrorMessages(prevState => ({
-        ...prevState,
+    } else {
+      newErrorMessages = {
+        ...newErrorMessages,
         emptyFields: ""
-      }));
+      };
     }
 
-    // Error: Verificar si existe algún mensaje de error
-    const error = Object.values(errorMessages).some((message) => message !== "");
-    if (error) {
-      console.log("Error: No se pasaron todas las validaciones del formulario");
+    setErrorMessages(newErrorMessages);
+
+    // Verifica si todos los campos de error están vacíos
+    const someFieldNoValid = Object.values(newErrorMessages).some((message) => message !== "");
+
+    if (someFieldNoValid) {
+      console.log('existen errores en los campos del del formulario');
       return;
     }
 

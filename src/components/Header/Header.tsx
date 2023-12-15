@@ -4,27 +4,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Seeker } from '../../components/Header/Seeker';
 import { useEffect, useState } from "react";
 import { Button } from "../Button/Button";
-import { RegardsUser } from "./RegardsUser";
+import AccountMenu from "./AccountMenu";
 
 function Header(): React.JSX.Element {
 
   const [searchIsClicked, setSearchIsClicked] = useState<boolean>(false);
-  const [isLogged, setIsLogged] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (localStorage.getItem("name")) {
-      setIsLogged(true);
-    }
-  }, []);
   
   function handleClick() {
     setSearchIsClicked(true);
   }
 
-  function signOut() {
-    localStorage.removeItem("name");
-    setIsLogged(false);
-  }
 
   return (
     <header className="header">
@@ -73,31 +63,10 @@ function Header(): React.JSX.Element {
           </ul>
 
           <ul className="container-buttons">
-            {isLogged ? (
+            {localStorage.getItem("name") ? (
               <>
               <li>
-                <RegardsUser nameUser={localStorage.getItem("name") ?? ""}/>
-              </li>
-
-              <li>
-                <picture className="picture-logo">
-                  <Link to="/perfil">
-                    <img
-                      className="logo-user"
-                      src="/src/assets/images/Header/userWhite.svg"
-                      alt="logo_cine_estelar"
-                    />
-                  </Link>
-                </picture>
-              </li>
-
-              <li>
-                <p
-                  onClick={signOut}
-                  className="title-header close-sesion"
-                  >
-                    Cerrar Sesión
-                  </p>
+                <AccountMenu />
               </li>
               </>
               ) : ( 
