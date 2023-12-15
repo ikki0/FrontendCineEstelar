@@ -2,16 +2,13 @@ body {
     color: white;
   }
   
-  .titulo {
-    text-align: center;
-    padding: 20px;
-  }
-  
   .article {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 20px;
+    text-align: justify;
   }
   
   .article ol {
