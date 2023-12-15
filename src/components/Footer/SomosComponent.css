@@ -1,0 +1,34 @@
+body {
+    color: white;
+  }
+  .titulo{
+    text-align: center;
+    margin-top: 30px;
+  }
+  .article {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    text-align: justify;
+  }
+  
+  .article p {
+    font-size: 18px;
+    width: 70%; 
+    max-width: 800px; 
+    margin-bottom: 0;
+    text-align: justify; 
+  }
+  .card-container{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-around;
+  }
+  .imglogo{
+    width: 25px;
+  }
+
+   

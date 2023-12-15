@@ -11,8 +11,9 @@ import Login from "../views/Login/Login";
 import { SingUp } from "../views/SingUp/SingUp";
 import { Contacto } from "../views/Contacto/Contacto";
 import { Perfil } from "../views/Perfil/Perfil";
-import { Peliculas } from "../views/Peliculas/peliculas";
-
+import { Peliculas } from "../views/Peliculas/Peliculas";
+import { Somos } from "../views/Quienes somos/Somos";
+import { Detalle } from "../views/PeliculasDetalle/Detalle";
 
 function RouteComponent(): React.JSX.Element{
     return (
@@ -22,6 +23,7 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/registro" element={ <AppFormSingUp /> } />
             <Route path="/inicio" element={ <AppFormLogin /> } />
             <Route path="/peliculas" element={ <Peliculas />} />
+            <Route path="/detalle/:id" element={ <Detalle />} />
             <Route path="/colaboraciones" element={ <Colaboradores /> } />
             <Route path="/contacto" element={ <Contacto/> } />
             <Route path="/porquenosotros" element={ <Nosotros /> } />
@@ -30,6 +32,7 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/iniciar-sesion" element={ <Login /> } />
             <Route path="/registrarse" element={ <SingUp /> } />
             <Route path="/perfil" element={ <Perfil />}/>
+            <Route path="/quienessomos" element={ <Somos /> } />
             <Route path="*" element={ <h1>Esta Página Todavía no existe 🤔</h1> } />
             
         </Routes>

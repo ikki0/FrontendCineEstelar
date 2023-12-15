@@ -33,6 +33,7 @@ function PeliculasComponent(): React.JSX.Element {
     <div className="main">
       <div className="container-movie">
         {movies.length ? (
+          
           <MainContainer title='Todas las películas' moviesObject={movies} />
         ) : (
           <p>No hay Películas.</p>
