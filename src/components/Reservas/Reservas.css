@@ -2,6 +2,7 @@
 display: flex;
 flex-direction: column;
 align-items: center;
+min-height: 85vh;
 }
 .reserva ul{
     margin-top: 3em;
@@ -17,33 +18,45 @@ align-items: center;
     list-style: none;
     column-gap: 10px;
 }
-.reserva div {
+
+.pantalla{
+    clip-path: polygon(0 0, 100% 0%, 97% 85%, 3% 85%);
+    background-color: grey;
+    margin-bottom: 10em;
     margin-top: 30px;
     width: 100vh;
     height: 15vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    
-}
-.pantalla{
-    clip-path: polygon(0 0, 100% 0%, 97% 85%, 3% 85%);
-    background-color: grey;
-    margin-bottom: 10em;
-}
-.butaca{
-    display: flex;
-    flex-direction: column;
-
-}
-.row1,.row2,.row3,.row4,.row5{
-    flex-direction: row;
-    gap: 15px;
 }
 
-.butaca button{
-    width: 8em;
-    height: 5em;
-    background-color: lightslategray;
-    
+.reserva-container {
+    width: 60%;
+    margin: auto;
+    height: 100%;
+display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  row-gap: 15px;
+  justify-items: center;
+}
+
+.reserva-butaca {
+    width: 100px;
+  height: 50px;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  /* background-color: red; */
+}
+
+.gris {
+    background-color: #8d8d8d;
+}
+
+.rojo {
+    background-color: rgb(148, 32, 32);
 }

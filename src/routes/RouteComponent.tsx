@@ -11,9 +11,10 @@ import Login from "../views/Login/Login";
 import { SingUp } from "../views/SingUp/SingUp";
 import { Contacto } from "../views/Contacto/Contacto";
 import { Perfil } from "../views/Perfil/Perfil";
-import { Peliculas } from "../views/Peliculas/Peliculas";
+import { Peliculas } from "../views/Peliculas/peliculas";
 import { Somos } from "../views/Quienes somos/Somos";
 import { Detalle } from "../views/PeliculasDetalle/Detalle";
+import { MovieHour } from "../views/MovieHour/MovieHour";
 
 function RouteComponent(): React.JSX.Element{
     return (
@@ -33,6 +34,7 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/registrarse" element={ <SingUp /> } />
             <Route path="/perfil" element={ <Perfil />}/>
             <Route path="/quienessomos" element={ <Somos /> } />
+            <Route path='/seleccionar-horario' element={ <MovieHour />} />
             <Route path="*" element={ <h1>Esta Página Todavía no existe 🤔</h1> } />
             
         </Routes>

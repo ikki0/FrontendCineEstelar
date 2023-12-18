@@ -83,7 +83,7 @@ export default function AccountMenu() {
         </Link>
         <Divider />
         <MenuItem onClick={handleClose}>
-          <Link to='./editar-perfil'>
+          <Link to='/perfil'>
             <ListItemIcon>
               <Settings fontSize="small" />
             </ListItemIcon>

@@ -9,7 +9,7 @@ function Reservas(): React.JSX.Element{
         <>
            <Header />
            <div className='main'>
-           <Reserva />
+            <Reserva />
            </div>
             <Footer/>
         </>

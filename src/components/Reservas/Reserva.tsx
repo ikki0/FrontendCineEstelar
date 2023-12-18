@@ -1,6 +1,52 @@
+import { useEffect, useState } from "react";
 import "./Reservas.css";
+import { SpinnerCharge } from "../SpinnerCharge/SpinnerCharge";
 
 function Reserva(): React.JSX.Element {
+  const [butacas, setButacas] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const idHorario = window.localStorage.getItem("idHorario");
+    // Realizar la petición a la API
+    fetch(`http://localhost:8081/ocupadasbutacas/${idHorario}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setButacas(data);
+        console.log(data); // Imprimir los datos en la consola
+        setIsLoading(false);
+
+      })
+      .catch((error) => {
+        console.error("error durante la petición get horarios/estrenos/1/1:", error);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <SpinnerCharge />
+    );
+  }
+
+  function handleButaca(ocupado: number, idOcupadas: number): void {
+    if (ocupado !== 0) {
+      return;
+    }
+
+    const correo='cliente7@correo.com'
+
+    fetch(`http://localhost:8081/ocupadas/update/${idOcupadas}/${correo}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.text())
+      .then((data) => console.log('todo Correcto, creo', data))
+      .catch((error) => console.error('Error:', error));
+  }
+
   return (
     <div className="reserva">
       <h1>ELIGE TUS ASIENTOS</h1>
@@ -53,43 +99,18 @@ function Reserva(): React.JSX.Element {
       <div className="pantalla">pantalla
       </div>
 
-      <div className="butaca">
-        <div className="row1">
-          1<button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-        </div>
-        <div className="row2">
-          2<button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-        </div>
-        <div className="row3">
-          3<button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-        </div>
-        <div className="row4">
-          4<button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-        </div>
-        <div className="row5">
-          5
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-        </div>
+      <div className="reserva-container">
+        {butacas.length ? (
+          butacas.map((butaca, index) => {
+            return (
+              <div onClick={() => handleButaca(butaca.ocupado, butaca.idOcupadas)} key={index} className={`reserva-butaca ${butaca.ocupado === 0 ? 'gris' : 'rojo'}`}>
+                <img src='src/assets/images/Reservas/chairWhite.svg' alt='silla' />
+              </div>
+            );
+          })
+        ) : (
+          <p>No hay Butacas</p>
+        )}
       </div>
     </div>
   );
