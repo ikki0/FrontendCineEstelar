@@ -14,8 +14,12 @@ function MovieHour(): React.JSX.Element {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const idCine = 1;
-        const idPelicula = 1;
+
+        // mis datos de la localStorage son:
+        // * cineIdLocalStorage
+        // *  selectedPeliculaId  
+        const idCine = window.localStorage.getItem("cineIdLocalStorage") || '';
+        const idPelicula = window.localStorage.getItem("selectedPeliculaId") || '';
         // Realizar la petición a la API
         fetch(`http://localhost:8081/horarios/estrenos/${idCine}/${idPelicula}`)
             .then((response) => response.json())

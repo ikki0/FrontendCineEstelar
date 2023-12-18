@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Reservas.css";
 import { SpinnerCharge } from "../SpinnerCharge/SpinnerCharge";
+import { ToastContainer, toast } from "react-toastify";
 
 function Reserva(): React.JSX.Element {
   const [butacas, setButacas] = useState<any>([]);
@@ -34,17 +35,29 @@ function Reserva(): React.JSX.Element {
       return;
     }
 
-    const correo='cliente7@correo.com'
+    const userName = window.localStorage.getItem('name') || '';
 
-    fetch(`http://localhost:8081/ocupadas/update/${idOcupadas}/${correo}`, {
+    fetch(`http://localhost:8081/ocupadas/update/${idOcupadas}/${userName}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => response.text())
-      .then((data) => console.log('todo Correcto, creo', data))
-      .catch((error) => console.error('Error:', error));
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success === true) {
+          console.log(`butaca reservada correctamente`);
+          toast.success('Butaca reservada correctamente', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 3500,
+          });
+        } else {
+          toast.error('Error inicio de sesión. Por favor, verifique los campos', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 3500,
+          });
+        }
+      })
   }
 
   return (
@@ -112,6 +125,7 @@ function Reserva(): React.JSX.Element {
           <p>No hay Butacas</p>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -4,14 +4,15 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    row-gap: 80px;
+    row-gap: 80px !important;
+    width: 100%;
 
 }
 .image-gallery .image-gallery{
-    width: 27%;
+    width: 25%;
     position: relative;
     left: 50%;
-    transform: translate(-35%,0%);
+    transform: translate(-27%,0%);
 }
 
 
@@ -42,6 +43,8 @@
 }
 
 .container-movie-info{
+
+    height: 200px;
     position: absolute;
     top: 50%;
     left: 21%;
