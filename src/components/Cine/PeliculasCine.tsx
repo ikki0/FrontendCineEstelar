@@ -3,6 +3,7 @@ import { TitleContainer } from '../Home/TitleContainer';
 import "./PeliculasCine.css";
 import { Link } from 'react-router-dom';
 
+
 interface PeliculasCineProps {
   cineId: string | null; 
 }
@@ -19,15 +20,20 @@ interface PeliculasCine {
   generos: string;
 }
 
+interface RequestOptions {
+  method: string;
+  redirect?: RequestRedirect | undefined;
+}
+
 function PeliculasCine(props: PeliculasCineProps): React.JSX.Element {
   const [peliculasCines, setPeliculasCines] = useState<PeliculasCine[]>([]);
   const ruta = `http://localhost:8081/horarios/estrenos/${props.cineId}`;
 
   useEffect(() => {
     if (props.cineId) {
-      const requestOptions = {
+      const requestOptions: RequestOptions = {
         method: 'GET',
-        redirect: 'follow' as RequestRedirect // Redefinir el tipo de 'redirect'
+        redirect: 'follow'
       };
 
       fetch(ruta, requestOptions)
@@ -39,32 +45,28 @@ function PeliculasCine(props: PeliculasCineProps): React.JSX.Element {
           console.log('error', error);
         });
     }
-  }, [props.cineId, ruta]);
-
-  //guardamos id pelicula en localstorage
-  const handleClick = (id_pelicula: number) => {
-    localStorage.setItem('selectedPeliculaId', id_pelicula.toString());
-  };
+  }, [props.cineId, ruta]); 
 
   return (
     <div className="peliculas-container">
       <div className='title'>
-        <TitleContainer title='Peliculas'/>
+      <TitleContainer title='Peliculas'/>
       </div>
       <div className="peliculas-card">
-        {peliculasCines.map((pelicula) => (
-          <div key={pelicula.id_pelicula} className="movie-element">
-            <Link to={`detalle/${pelicula.id_pelicula}`} onClick={() => handleClick(pelicula.id_pelicula)}>
-              <picture className='picture-movie'>
-                <img className='image-movie' src={pelicula.imagen} alt={pelicula.titulo} />
-              </picture>
-              <div className="movie_element-div-title">
-                <h2 className="movie_element-title">{pelicula.titulo}</h2>
-              </div>
-            </Link>
+      {peliculasCines.map((pelicula) => (
+        <div key={pelicula.id_pelicula} className="movie-element">
+          <Link to={`detalle/${pelicula.id_pelicula}`}>
+          <picture className='picture-movie'>
+            <img className='image-movie' src={pelicula.imagen} alt={pelicula.titulo} />
+          </picture>
+          <div className="movie_element-div-title">
+            <h2 className="movie_element-title">{pelicula.titulo}</h2>
           </div>
-        ))}
-      </div>
+          </Link>
+        </div>
+       
+      ))}
+       </div>
     </div>
   );
 }
