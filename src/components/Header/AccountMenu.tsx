@@ -11,6 +11,7 @@ import Logout from '@mui/icons-material/Logout';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import './AccountMenu.css'
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -76,14 +77,14 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <Link to="/perfil">
+        <Link to="/perfil" className="AccountMenu-link">
           <MenuItem>
             <Avatar /> {localStorage.getItem("name")}
           </MenuItem>
         </Link>
         <Divider />
         <MenuItem onClick={handleClose}>
-          <Link to='/perfil'>
+          <Link to='/perfil' className="AccountMenu-link">
             <ListItemIcon>
               <Settings fontSize="small" />
             </ListItemIcon>

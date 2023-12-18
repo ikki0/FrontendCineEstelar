@@ -11,18 +11,19 @@ import { ButtonBillboard } from "../../components/Button/ButtonBillboard";
 
 
 function Proyecciones(): React.JSX.Element {
-  const [movies, setMovies] = useState<MovieClass[]>([]);
+  const [moviesODS, setMoviesODS] = useState<MovieClass[]>([]);
+  const[moviesODSReleases, setMoviesODSReleases] = useState<MovieClass[]>([]);
   const [moviesFiltered, setMoviesFiltered] = useState<ImageDetailInterface[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Realizar la petición a la API   
-    fetch("http://localhost:8081/peliculas")
+    fetch("http://localhost:8081/horarios/estrenosods")
       .then((response) => response.json())
       .then((data: MovieInterface[]) => {
         // Convertir cada objeto JSON en una instancia de la clase Photo
-        setMovies(data.map((movieData) => new MovieClass(movieData)));
+        setMoviesODSReleases(data.map((movieData) => new MovieClass(movieData)));
         // Extraer las imageDetails de cada objeto y agregarlas al array 'imageDetails'
         setMoviesFiltered(data.map(
           (movieData) => {
@@ -37,7 +38,22 @@ function Proyecciones(): React.JSX.Element {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("error durante la petición get /peliculas:", error);
+        console.error("error durante la petición get /horarios/estrenosods:", error);
+        setIsLoading(false); // También establece isLoading en false en caso de error
+      });
+  }, []);
+
+  useEffect(() => {
+    // Realizar la petición a la API   
+    fetch("http://localhost:8081/horarios/estrenosods/historic")
+      .then((response) => response.json())
+      .then((data: MovieInterface[]) => {
+        // Convertir cada objeto JSON en una instancia de la clase Photo
+        setMoviesODS(data.map((movieData) => new MovieClass(movieData)));        
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("error durante la petición get /horarios/estrenosods/historic:", error);
         setIsLoading(false); // También establece isLoading en false en caso de error
       });
   }, []);
@@ -57,7 +73,7 @@ function Proyecciones(): React.JSX.Element {
       <Header />
       <div className="main">
         <div className="container-proyecciones">
-          {movies.length ? (
+          {moviesODS.length ? (
             <>
               <div className="image-gallery">
                 <ImageGallery
@@ -80,7 +96,8 @@ function Proyecciones(): React.JSX.Element {
                 </div>
               </div>
 
-              <MainContainer title='Tus Películas ODS!' moviesObject={movies} />
+              <MainContainer title='¡Estrenos ODS!' moviesObject={moviesODSReleases} />
+              <MainContainer title='¡Películas ODS!' moviesObject={moviesODS} />
             </>
           ) : (
             <p>No hay Películas.</p>

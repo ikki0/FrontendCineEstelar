@@ -21,6 +21,7 @@ body {
 
 a {
     text-decoration: inherit;
+    color: white;
 }
 
 a:hover {

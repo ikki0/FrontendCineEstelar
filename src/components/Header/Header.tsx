@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import SearchIcon from '@mui/icons-material/Search';
 import { Seeker } from '../../components/Header/Seeker';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../Button/Button";
 import AccountMenu from "./AccountMenu";
 
@@ -51,7 +51,7 @@ function Header(): React.JSX.Element {
 
             <li>
               <Link to="/proyecciones">
-                <p className="title-header">Proyecciones</p>
+                <p className="title-header">Proyecciones ODS</p>
               </Link>
             </li>
 
