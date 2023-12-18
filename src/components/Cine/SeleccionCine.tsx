@@ -84,3 +84,6 @@ function SeleccionCine(): React.JSX.Element {
 }
 
 export { SeleccionCine };
+
+
+// guardame el cine en localstorage para poder usarlo posteriormente.

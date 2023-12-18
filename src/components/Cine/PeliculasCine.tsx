@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TitleContainer } from '../Home/TitleContainer';
 import "./PeliculasCine.css";
+import { Link } from 'react-router-dom';
 
 
 interface PeliculasCineProps {
@@ -54,12 +55,14 @@ function PeliculasCine(props: PeliculasCineProps): React.JSX.Element {
       <div className="peliculas-card">
       {peliculasCines.map((pelicula) => (
         <div key={pelicula.id_pelicula} className="movie-element">
+          <Link to={`detalle/${pelicula.id_pelicula}`}>
           <picture className='picture-movie'>
             <img className='image-movie' src={pelicula.imagen} alt={pelicula.titulo} />
           </picture>
           <div className="movie_element-div-title">
             <h2 className="movie_element-title">{pelicula.titulo}</h2>
           </div>
+          </Link>
         </div>
        
       ))}
