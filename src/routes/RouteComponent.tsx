@@ -11,7 +11,7 @@ import Login from "../views/Login/Login";
 import { SingUp } from "../views/SingUp/SingUp";
 import { Contacto } from "../views/Contacto/Contacto";
 import { Perfil } from "../views/Perfil/Perfil";
-import { Peliculas } from "../views/Peliculas/peliculas";
+import { Peliculas } from "../views/Peliculas/Peliculas";
 import { Somos } from "../views/Quienes somos/Somos";
 import { Detalle } from "../views/PeliculasDetalle/Detalle";
 import { MovieHour } from "../views/MovieHour/MovieHour";
@@ -25,6 +25,8 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/inicio" element={ <AppFormLogin /> } />
             <Route path="/peliculas" element={ <Peliculas />} />
             <Route path="/detalle/:id" element={ <Detalle />} />
+            <Route path="peliculas/detalle/:id" element={ <Detalle />} />
+            <Route path="cines/detalle/:id" element={ <Detalle />} />
             <Route path="/colaboraciones" element={ <Colaboradores /> } />
             <Route path="/contacto" element={ <Contacto/> } />
             <Route path="/porquenosotros" element={ <Nosotros /> } />
