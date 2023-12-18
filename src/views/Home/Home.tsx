@@ -82,7 +82,7 @@ function Home(): React.JSX.Element {
       <div className="main">
         <div className="container-movie">
           {movies.length ? (
-            <>
+            <div className='container-movie'>
               <div className="image-gallery">
                 <ImageGallery
                   items={imageDetails}
@@ -105,7 +105,7 @@ function Home(): React.JSX.Element {
               </div>
 
               <MainContainer title='Top Películas' moviesObject={movies} />
-            </>
+            </div>
           ) : (
             <p>No hay Películas.</p>
           )}

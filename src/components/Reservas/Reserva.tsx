@@ -34,9 +34,9 @@ function Reserva(): React.JSX.Element {
       return;
     }
 
-    const correo='cliente7@correo.com'
+    const userName = window.localStorage.getItem('name') || '';
 
-    fetch(`http://localhost:8081/ocupadas/update/${idOcupadas}/${correo}`, {
+    fetch(`http://localhost:8081/ocupadas/update/${idOcupadas}/${userName}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
