@@ -33,10 +33,17 @@ function SeleccionCine(): React.JSX.Element {
       .catch(error => {
         console.log('error', error);
       });
+
+      //guardar cineID en localstorage
+    const cineIdLocalStorage = localStorage.getItem('selectedCineId');
+    if (cineIdLocalStorage) {
+      setSelectedCineId(cineIdLocalStorage);
+    }
   }, []);
 
   const handleClick = (id_cine: string) => {
     setSelectedCineId(id_cine);
+    localStorage.setItem('selectedCineId', id_cine); // Guardar en localStorage
   };
 
   return (
@@ -72,7 +79,6 @@ function SeleccionCine(): React.JSX.Element {
         ))}
       </div>
       <div>
-      
         {selectedCineId && (
           <div className="movies-container">
             <PeliculasCine cineId={selectedCineId} />
@@ -84,6 +90,3 @@ function SeleccionCine(): React.JSX.Element {
 }
 
 export { SeleccionCine };
-
-
-// guardame el cine en localstorage para poder usarlo posteriormente.
