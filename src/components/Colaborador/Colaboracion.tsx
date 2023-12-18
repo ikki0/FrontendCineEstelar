@@ -1,3 +1,4 @@
+import { TitleContainer } from "../Home/TitleContainer";
 import "./colaboradores.css";
 
 function Colaboracion() {
@@ -5,8 +6,10 @@ function Colaboracion() {
     <section>
       <article className="article article-1">
         <header>
-          <h1>Campaña de Colaboración del Cine Estelar: </h1>
+          <div className="container-titlec">
+          <TitleContainer  title="Campaña de Colaboración del Cine Estelar:" />
           <h2>Iluminando Vidas, Protegiendo Bosques</h2>
+          </div>
         </header>
 
         <p>

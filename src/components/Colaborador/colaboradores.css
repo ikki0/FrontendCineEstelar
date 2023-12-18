@@ -11,9 +11,6 @@ section{
     flex-direction: column;
     justify-content: center;
     row-gap: 20px;
-    
-    
-
 }
 .article header{
     text-align: center;
@@ -42,4 +39,7 @@ section{
     height: 15vh;
     align-self: center;
     object-fit: contain;
+}
+.container-titlec h2{
+    margin-top: 20px;
 }
