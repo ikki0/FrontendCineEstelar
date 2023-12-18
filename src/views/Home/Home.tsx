@@ -14,18 +14,20 @@ import "./Home.css";
 
 function Home(): React.JSX.Element {
   const [movies, setMovies] = useState<MovieClass[]>([]);
+  const [moviesReleases, setMoviesReleases] = useState<MovieClass[]>([]);
   const [imageDetails, setImageDetails] = useState<ImageDetailInterface[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true); 
   // Es necesario utilizar useEffect para realizar cualquier petición a una API para evitar peticiones infinitas
+
   useEffect(() => {
     // Realizar la petición a la API
-    fetch("http://localhost:8081/peliculas")
+    fetch("http://localhost:8081/horarios/estrenos")
       .then((response) => response.json())
       .then((data: MovieInterface[]) => {
         // Convertir cada objeto JSON en una instancia de la clase Photo
         const movieObjects = data.map((movieData) => new MovieClass(movieData));
-        setMovies(movieObjects);
+        setMoviesReleases(movieObjects);
 
         // Extraer las imageDetails de cada objeto y agregarlas al array 'imageDetails'
         const filterImageDetails: ImageDetailInterface[] = movieObjects.map(
@@ -37,6 +39,23 @@ function Home(): React.JSX.Element {
           }
         );
         setImageDetails(filterImageDetails);
+        setIsLoading(false);
+        
+      })
+      .catch((error) => {
+        console.error("error durante la petición get /horarios/estrenos:", error);
+        setIsLoading(false); 
+      });
+  }, []);
+
+  useEffect(() => {
+    // Realizar la petición a la API
+    fetch("http://localhost:8081/peliculas")
+      .then((response) => response.json())
+      .then((data: MovieInterface[]) => {
+        // Convertir cada objeto JSON en una instancia de la clase Photo
+        const movieObjects = data.map((movieData) => new MovieClass(movieData));
+        setMovies(movieObjects);
         setIsLoading(false);
         
       })

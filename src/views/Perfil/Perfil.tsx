@@ -61,8 +61,8 @@ function Perfil(): React.JSX.Element {
                   
                   if (ctx) {
                     // Reducir el tamaño de la imagen
-                    const MAX_WIDTH = 100;
-                    const MAX_HEIGHT = 100;
+                    const MAX_WIDTH = 500;
+                    const MAX_HEIGHT = 500;
                     let width = img.width;
                     let height = img.height;
                 
