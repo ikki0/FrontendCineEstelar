@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import "./Reservas.css";
 import { SpinnerCharge } from "../SpinnerCharge/SpinnerCharge";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Reserva(): React.JSX.Element {
   const [butacas, setButacas] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const idHorario = window.localStorage.getItem("idHorario");
@@ -30,7 +33,7 @@ function Reserva(): React.JSX.Element {
     );
   }
 
-  function handleButaca(ocupado: number, idOcupadas: number): void {
+  function handleButaca(ocupado: number, idOcupadas: number, fila: number, columna: number, cineId: number, peliculaId: number, dia: string, hora: string): void {
     if (ocupado !== 0) {
       return;
     }
@@ -46,11 +49,12 @@ function Reserva(): React.JSX.Element {
       .then((response) => response.json())
       .then((data) => {
         if (data.success === true) {
-          console.log(`butaca reservada correctamente`);
-          toast.success('Butaca reservada correctamente', {
+          toast.success('Butaca reservada correctamente, en breve será redireccionado ', {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 3500,
           });
+          saveDatasToLocalStorage(fila, columna, cineId, peliculaId, dia, hora);
+          redirectToPurchaseDetails();
         } else {
           toast.error('Error inicio de sesión. Por favor, verifique los campos', {
             position: toast.POSITION.TOP_RIGHT,
@@ -60,23 +64,32 @@ function Reserva(): React.JSX.Element {
       })
   }
 
+  function redirectToPurchaseDetails(): void {
+    setTimeout(() => {
+      navigate('/detalles-compra');
+    }, 3500);
+  }
+
+  function saveDatasToLocalStorage(fila: number, columna: number, cineId: number, peliculaId: number, dia: string, hora: string): void{
+    window.localStorage.setItem('fila', fila.toString());
+    window.localStorage.setItem('columna', columna.toString());
+    window.localStorage.setItem('cineId', cineId.toString());
+    window.localStorage.setItem('peliculaId', peliculaId.toString());
+    window.localStorage.setItem('dia', dia);
+    window.localStorage.setItem('hora', hora);
+  }
+
   return (
     <div className="reserva">
       <h1>ELIGE TUS ASIENTOS</h1>
       <nav>
         <ul>
           <li>
-            <img
-              src="src/assets/images/Reservas/square-full-solid.svg"
-              alt=" disponible"
-            />
-            <span>Seleccionada</span>
+            <div className='square-gray'></div>
+            Disponible
           </li>
           <li>
-            <img
-              src="src/assets/images/Reservas/user-regular.svg"
-              alt="no disponible"
-            />
+            <div className='square-red'></div>
             No disponible
           </li>
           <li>
@@ -114,10 +127,10 @@ function Reserva(): React.JSX.Element {
 
       <div className="reserva-container">
         {butacas.length ? (
-          butacas.map((butaca, index) => {
+          butacas.map((butaca: any, index:number) => {
             return (
-              <div onClick={() => handleButaca(butaca.ocupado, butaca.idOcupadas)} key={index} className={`reserva-butaca ${butaca.ocupado === 0 ? 'gris' : 'rojo'}`}>
-                <img src='src/assets/images/Reservas/chairWhite.svg' alt='silla' />
+              <div title={butaca.ocupado === 0 ? 'Disponible' : 'No disponible'}  onClick={() => handleButaca(butaca.ocupado, butaca.idOcupadas, butaca.butaca.id_fila, butaca.butaca.id_columna, butaca.horario.salaCineIdCine, butaca.horario.peliculaIdPelicula, butaca.horario.idDia, butaca.horario.idHora)} key={index} className={`reserva-butaca ${butaca.ocupado === 0 ? 'gris' : 'rojo'}`}>
+                <img src='src/assets/images/Reservas/chairWhite.svg' alt='silla'  title={butaca.ocupado === 0 ? 'Disponible' : 'No disponible'}/>
               </div>
             );
           })

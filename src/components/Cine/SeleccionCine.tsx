@@ -36,6 +36,7 @@ function SeleccionCine(): React.JSX.Element {
 
       //guardar cineID en localstorage
     const cineIdLocalStorage = localStorage.getItem('selectedCineId');
+      console.log(`mi id cine es: ` , selectedCineId)
     if (cineIdLocalStorage) {
       setSelectedCineId(cineIdLocalStorage);
     }
