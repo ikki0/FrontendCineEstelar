@@ -5,6 +5,8 @@ interface MovieInterface {
     pais: string;
     year: string;
     imagen: string;
+    imagen_horizontal: string;
+    ods: number
 }
 
 export type { MovieInterface }

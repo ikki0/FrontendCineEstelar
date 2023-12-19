@@ -13,6 +13,7 @@ import { Peliculas } from "../views/Peliculas/Peliculas";
 import { Somos } from "../views/Quienes somos/Somos";
 import { Detalle } from "../views/PeliculasDetalle/Detalle";
 import { MovieHour } from "../views/MovieHour/MovieHour";
+import { PurchaseDetails } from "../views/PurchaseDetails/PurchaseDetails";
 
 function RouteComponent(): React.JSX.Element{
     return (
@@ -34,6 +35,7 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/perfil" element={ <Perfil />}/>
             <Route path="/quienessomos" element={ <Somos /> } />
             <Route path='/seleccionar-horario' element={ <MovieHour />} />
+            <Route path='/detalles-compra' element={<PurchaseDetails/>} />
             <Route path="*" element={ <h1>Esta Página Todavía no existe 🤔</h1> } />
             
         </Routes>

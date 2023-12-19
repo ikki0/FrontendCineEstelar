@@ -22,6 +22,10 @@ class MovieClass {
     return this.data.imagen;
   }
 
+  getUrlHorizontal(): string {
+    return this.data.imagen_horizontal;
+  }
+
   // Método para obtener los datos de la foto
   getData(): MovieInterface {
     return this.data;
