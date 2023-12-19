@@ -23,6 +23,7 @@ function RouteComponent(): React.JSX.Element{
             <Route path="/detalle/:id" element={ <Detalle />} />
             <Route path="peliculas/detalle/:id" element={ <Detalle />} />
             <Route path="cines/detalle/:id" element={ <Detalle />} />
+            <Route path="proyecciones/detalle/:id" element={ <Detalle />} />
             <Route path="/colaboraciones" element={ <Colaboradores /> } />
             <Route path="/contacto" element={ <Contacto/> } />
             <Route path="/porquenosotros" element={ <Nosotros /> } />

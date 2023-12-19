@@ -9,7 +9,9 @@ function Colaboradores(): React.JSX.Element{
         <>
         <Header/>
         <div className='main'>
+            <div className='container-c'>
             <Colaboracion />
+            </div>
             </div>
             <Footer/>
         </>
