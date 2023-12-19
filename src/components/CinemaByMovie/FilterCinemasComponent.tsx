@@ -32,7 +32,8 @@ function FilterCinemasComponent(): React.JSX.Element {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const peliculaId = window.localStorage.getItem('peliculaId') || 'no hay peliculaId';
+    // 
+    const peliculaId = window.localStorage.getItem('selectedPeliculaId') || 'no hay peliculaId';
 
     fetch(`http://localhost:8081/horarios/estrenos/0/${peliculaId}`)
       .then((response) => response.json())
