@@ -1,0 +1,13 @@
+.CinemaByMovies-main {
+    min-height: 75vh;
+}
+
+
+.PurchaseDetails-wrapper {
+    padding-bottom: 2rem;
+}
+
+.CinemaByMovie-picture{
+    display: flex;
+    justify-content: center;
+}

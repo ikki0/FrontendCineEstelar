@@ -7,13 +7,16 @@ import { MovieInterface } from "../../interfaces/MovieInterface";
 import { SpinnerCharge } from "../../components/SpinnerCharge/SpinnerCharge";
 import { FilterCinemasComponent } from "../../components/CinemaByMovie/FilterCinemasComponent";
 
+import './CinemaByMovie.css';
+
 function CinemaByMovie(): React.JSX.Element {
     const [movie, setMovie] = useState<MovieClass>();
     const [isLoading, setIsLoading] = useState(true);
 
      // * Datos de la pelicula
      useEffect(() => {
-        const peliculaId = window.localStorage.getItem('peliculaId') || 'no hay peliculaId';
+        const peliculaId = window.localStorage.getItem('selectedPeliculaId') || 'no hay peliculaId';
+        console.log(`peliculaId: ${peliculaId}`);
         // Realizar la petición a la API
         fetch(`http://localhost:8081/peliculas/${peliculaId}`)
             .then((response) => response.json())
@@ -39,12 +42,12 @@ function CinemaByMovie(): React.JSX.Element {
         <>
             <Header />
             {movie ? (
-                <div className="main">
+                <div className="CinemaByMovies-main">
                      <div className='PurchaseDetails-containerDetails'>
                         <div className='PurchaseDetails-wrapper'>
                             <header className="PurchaseDetails-header">
                                 <TitleContainer title='Buscar Cines' />
-                                <picture className='PurchaseDetails-picture'>
+                                <picture className='CinemaByMovie-picture'>
                                     <img className='PurchaseDetails-img' src={movie.getUrlHorizontal()} alt='imagen pelicula' title={movie.getTitle()} />
                                 </picture>
                             </header>
@@ -56,13 +59,7 @@ function CinemaByMovie(): React.JSX.Element {
                                     </h1>
                                 </header>
 
-                                <article className='PurchaseDetails-article'>
-                                    <h3 className="PurchaseDetails-h3">Fecha</h3>
-                                    <p className='PurchaseDetails-p'>{window.localStorage.getItem('dia') || 'no hay fecha'}</p>
-                                </article>
-
                                 <FilterCinemasComponent />
-
                             </section>
                         </div>
                     </div>
@@ -72,8 +69,6 @@ function CinemaByMovie(): React.JSX.Element {
             )
             
         }
-            <div className='main'>
-            </div>
             <Footer />
         </>
     );
