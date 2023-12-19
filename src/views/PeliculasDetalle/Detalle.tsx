@@ -10,7 +10,7 @@ function Detalle(): React.JSX.Element {
         <>
             <Header />
             <div className='main'>
-          <PeliculasDetalle/>
+                <PeliculasDetalle />
             </div>
             <Footer />
         </>

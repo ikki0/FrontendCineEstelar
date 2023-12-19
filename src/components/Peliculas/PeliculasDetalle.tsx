@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./PeliculasDetalle.css";
 import { ButtonBillboard } from "../Button/ButtonBillboard";
 
@@ -36,6 +36,7 @@ function PeliculasDetalle() {
   const [detallePelicula, setDetallePelicula] = useState<DetallePelicula | null>(null);
   const { id } = useParams<{ id: string }>();
   const [esEnEstreno, setEsEnEstreno] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const obtenerDetallePelicula = async () => {
@@ -73,10 +74,10 @@ function PeliculasDetalle() {
   
       if (isNamePresent) {
         // Si 'name' está presente, redirigir a la página de contacto
-        window.location.href = "/contacto";
+        navigate("/buscar-cine");
       } else {
         // Si 'name' no está presente, redirigir a la página de inicio
-        window.location.href = "/iniciar-sesion";
+        navigate("/iniciar-sesion");
       }
     }
   };
