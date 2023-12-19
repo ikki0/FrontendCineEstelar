@@ -18,6 +18,7 @@ interface RequestOptions {
 function SeleccionCine(): React.JSX.Element {
   const [cines, setCines] = useState<Cine[]>([]);
   const [selectedCineId, setSelectedCineId] = useState<string | null>(null);
+  const [showPeliculasCine, setShowPeliculasCine] = useState<boolean>(false);
 
   useEffect(() => {
     const requestOptions: RequestOptions = {
@@ -34,18 +35,19 @@ function SeleccionCine(): React.JSX.Element {
         console.log('error', error);
       });
 
-      //guardar cineID en localstorage
+    //guardar cineID en localstorage
     const cineIdLocalStorage = localStorage.getItem('selectedCineId');
-      console.log(`mi id cine es: ` , selectedCineId)
-    if (cineIdLocalStorage) {
-      setSelectedCineId(cineIdLocalStorage);
-    }
-  }, []);
+      if (cineIdLocalStorage) {
+        setSelectedCineId(cineIdLocalStorage);
+        setShowPeliculasCine(false); // Activar el estado para mostrar PeliculasCine
+      }
+    }, []);
 
-  const handleClick = (id_cine: string) => {
-    setSelectedCineId(id_cine);
-    localStorage.setItem('selectedCineId', id_cine); // Guardar en localStorage
-  };
+    const handleClick = (id_cine: string) => {
+      setSelectedCineId(id_cine);
+      localStorage.setItem('selectedCineId', id_cine);
+      setShowPeliculasCine(true); // Activar el estado para mostrar PeliculasCine
+    };
 
   return (
     <>
@@ -80,11 +82,11 @@ function SeleccionCine(): React.JSX.Element {
         ))}
       </div>
       <div>
-        {selectedCineId && (
-          <div className="movies-container">
-            <PeliculasCine cineId={selectedCineId} />
-          </div>
-        )}
+      {showPeliculasCine && selectedCineId && (
+            <div className="movies-container">
+              <PeliculasCine cineId={selectedCineId} />
+            </div>
+          )}
       </div>
     </>
   );
