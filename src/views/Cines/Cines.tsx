@@ -11,10 +11,10 @@ function Cines(): React.JSX.Element {
         <>
             <Header />
             <div className='main'>
-            <div className='titulo'>
+                <div className='container'>
                     <TitleContainer title='Cines' />
+                    <SeleccionCine />
                 </div>
-                <SeleccionCine />
             </div>
             <Footer />
         </>

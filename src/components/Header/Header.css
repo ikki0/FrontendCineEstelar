@@ -9,6 +9,11 @@
     font-size: 3rem !important;
     font-weight: bold;
     background-color: #07142a;
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    z-index: 999; 
+
 }
 
 .header nav {
