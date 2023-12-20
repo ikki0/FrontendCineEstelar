@@ -9,6 +9,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import { ButtonBillboard } from "../../components/Button/ButtonBillboard";
 import { MainContainer } from "../../components/Home/MainContainer";
 import { SpinnerCharge } from "../../components/SpinnerCharge/SpinnerCharge";
+import { useNavigate } from "react-router-dom";
 
 import "./Home.css";
 
@@ -18,7 +19,9 @@ function Home(): React.JSX.Element {
   const [imageDetails, setImageDetails] = useState<ImageDetailInterface[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true); 
+  const [currentIdMovie, setCurrentIdMovie] = useState<number>(0);
   // Es necesario utilizar useEffect para realizar cualquier petición a una API para evitar peticiones infinitas
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Realizar la petición a la API
@@ -35,6 +38,7 @@ function Home(): React.JSX.Element {
             return {
               original: movie.getUrl(),
               title: movie.getTitle(),
+              id: movie.getId(),
             };
           }
         );
@@ -74,8 +78,12 @@ function Home(): React.JSX.Element {
 
   function handleSlide(currentIndex: number) {
     setCurrentImageIndex(currentIndex);
+    setCurrentIdMovie(imageDetails[currentIndex].id);
   }
 
+  function redirectImageDetails() {
+    navigate(`peliculas/detalle/${currentIdMovie}`);
+  }
   return (
     <>
       <Header />
@@ -100,7 +108,9 @@ function Home(): React.JSX.Element {
                     {imageDetails[currentImageIndex]?.title}
                   </p>
 
-                  <ButtonBillboard title="Compra ya tus entradas" />
+                  <div onClick={redirectImageDetails}>
+                    <ButtonBillboard  title="Compra ya tus entradas" />
+                  </div>
                 </div>
               </div>
 

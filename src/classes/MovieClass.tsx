@@ -7,6 +7,10 @@ class MovieClass {
     this.data = data;
   }
 
+  getId(): number {
+    return this.data.id_pelicula;
+  }
+
    // Método para obtener el id de la foto
    getIdMovie(): number {
     return this.data.id_pelicula;
