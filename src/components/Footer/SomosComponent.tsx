@@ -145,7 +145,7 @@ function SomosComponent(): React.JSX.Element {
             />
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                FFundador y creador de Cine Estelar, además de Desarrollador BackEnd en la empresa.
+                Fundador y creador de Cine Estelar, además de Desarrollador BackEnd en la empresa.
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
