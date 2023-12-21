@@ -179,7 +179,7 @@ function Perfil(): React.JSX.Element {
                 <div className={style.containerMain}>
                     <header className={style.header}>
                         <picture className={style.picture}>
-                            <img className={style.avatar} src={customer?.getAvatarUrl()} />
+                            <img className={style.avatar} src={customer?.getAvatarUrl() ? customer?.getAvatarUrl() : 'src/assets/images/Header/userWhite.svg'} />
                         </picture>
                         <h1>
                             ¡Bienvenido {customer?.getNickCliente()} !
